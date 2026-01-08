@@ -1,0 +1,45 @@
+footer {
+  overflow: hidden;
+  width: 100%;
+  background-color: var(--brown-dark) !important;
+  padding: var(--padding);
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  grid-area: footer;
+}
+
+footer * {
+  z-index: 1;
+  font-size: 14px;
+}
+
+footer h3 {
+  font-size: 20px;
+  margin: 0;
+  padding-bottom: 5px;
+  color: white;
+}
+footer {
+  color: var(--gray-medium);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul li {
+  padding: 5px 0;
+}
+
+@media (max-width: 720px) {
+  footer div {
+    padding: 0;
+  }
+
+  footer .links-container {
+    display: none;
+  }
+}

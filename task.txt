@@ -1,0 +1,29 @@
+Completed Tasks - 2025-12-17
+
+1. Email Verification System Update
+   - Created `email_verification` table (with `user_id`, `token`, `expired_at`, `pending_data`).
+   - Created `add_pending_data_col.php` migration script to add `pending_data` column to `email_verification` table.
+   - Updated Registration to use secure, expiring tokens (10 minutes).
+   - Updated `verify_email.php` to validate tokens and expiration.
+   - Added "Resend Verification Link" feature.
+
+2. Login Logic Improvements
+   - Updated `login.php` to automatically generate and send a new verification token if an unverified user attempts to log in.
+   - Ensured `$_SESSION['user']` is automatically set (auto-login) upon successful email verification.
+
+3. Profile Update Security & Atomic Updates
+   - Implemented Validation: Added `updateProfileRequest.php` to mirror registration validation rules (password complexity, email format, etc.).
+   - Implemented Atomic Updates:
+     - If a user changes their email, NO profile data (name, password, instructor details) is updated immediately.
+     - All changes are stored in the `pending_data` column of the `email_verification` table.
+     - Changes are only applied to the database once the new email is verified.
+   - Enforced Security: Made `current_password` mandatory for ANY profile update to ensure account ownership.
+4. migrations in folder `backend/migrations`
+    - to run migrations use this two line this will create table in your local database
+    php backend/migrations/email_verification_table.php
+    php backend/migrations/add_pending_data_col.php
+
+5. Profile Photo Update (Pending)
+   - Allow user to click profile picture to select new photo.
+   - Show live preview of selected photo.
+   - Handle file upload in backend (with atomic update support).
