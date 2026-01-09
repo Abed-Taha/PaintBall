@@ -8,9 +8,12 @@ if (empty($name))
 // Validate Age
 if (empty($age)) {
     handleError("Age is required.");
+} elseif (!is_numeric($age)) {
+    handleError("Age must be a number.");
 } elseif ($age < 18) {
-    handleError("Age must be a valid number  18+.");
+    handleError("Age must be a valid number 18+.");
 }
+
 
 // Validate Email
 if (empty($email)) {

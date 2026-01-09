@@ -21,7 +21,7 @@ $name = htmlspecialchars(trim($_POST["name"] ?? ""));
 $email = htmlspecialchars(trim($_POST["email"] ?? ""));
 $phone = htmlspecialchars(trim($_POST["phone"] ?? ""));
 $age = htmlspecialchars(trim($_POST["age"] ?? ""));
-$age = htmlspecialchars(trim($_POST["age"] ?? ""));
+
 
 // Basic validation replaced by Request file
 require_once "../requests/updateProfileRequest.php";

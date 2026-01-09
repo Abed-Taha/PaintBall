@@ -14,7 +14,7 @@ if (empty($age)) {
     handleError("Age must be a valid number  18+.");
 }
 if(DB::table("users")->where("email", $email)->first()){
-    handleError("Email is already in use.");
+    handleError("Registration failed. Please check your data.");
 }
 if (empty($email)) {
     handleError("Email is required.");

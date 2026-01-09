@@ -7,6 +7,11 @@ require_once __DIR__ . "/../../env/DTO.php";
 // Start session if needed
 session_start();
 
+//ADMIN AUTHORIZATION CHECK 
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header("Location:/403");
+    exit;}
+
 // Validate input
 $userId = $_GET['id'] ?? null;
 $action = null;
@@ -20,6 +25,7 @@ if (isset($_GET['delete'])) {
 if (!$userId || !$action) {
     DTO::session_error("Something went wrong when parsing the data ");
 }
+exit;
 
 $userId = (int) $userId; // cast to integer for safety
 

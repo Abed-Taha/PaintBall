@@ -71,4 +71,5 @@ if ($user && password_verify($password, $user["password"])) {
 } else {
     DTO::session_error("Invalid email or password.", $_POST);
     header("Location:/login");
+    exit;
 }

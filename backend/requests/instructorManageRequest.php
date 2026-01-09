@@ -37,3 +37,10 @@ if (!$user) {
     header("Location: /admin/instructors");
     exit();
 }
+
+// Prevent modifying another admin
+if ($user['role'] === 'admin') {
+    DTO::session_error("You cannot modify another admin account.");
+    header("Location: /admin/instructors");
+    exit();
+}
