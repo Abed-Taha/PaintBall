@@ -1,2 +1,7 @@
 .DS_Store
 /backend/storage/images
+/backend/.DS_Store
+
+
+
+/frontend/.DS_Store

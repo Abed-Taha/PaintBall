@@ -9,7 +9,8 @@ session_start();
 
 //ADMIN AUTHORIZATION CHECK 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location:/403");
+    DTO::session_error("You are not authorized to access this page");
+    header("Location:/login");
     exit;}
 
 // Validate input
@@ -24,8 +25,10 @@ if (isset($_GET['delete'])) {
 
 if (!$userId || !$action) {
     DTO::session_error("Something went wrong when parsing the data ");
+    header("Location:/admin/users");
+    exit;
 }
-exit;
+
 
 $userId = (int) $userId; // cast to integer for safety
 

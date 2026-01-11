@@ -14,13 +14,13 @@ if (empty($age)) {
     handleError("Age must be a valid number  18+.");
 }
 if(DB::table("users")->where("email", $email)->first()){
-    handleError("Registration failed. Please check your data.");
+     handleError("Email is already in use.");
 }
 if (empty($email)) {
     handleError("Email is required.");
 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     handleError("Email format is invalid.");
-}
+}   
 
 // Validate Phone
 if (empty($phone)) {
