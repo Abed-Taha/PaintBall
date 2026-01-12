@@ -22,6 +22,9 @@ $payment_price = htmlspecialchars(trim($_POST['payment_price'] ?? ''));
 $payment_date = htmlspecialchars(trim($_POST['payment_date'] ?? ''));
 $payment_type = htmlspecialchars(trim($_POST['payment_type'] ?? ''));
 $map_id = htmlspecialchars(trim($_POST['map_id'] ?? ''));
+$description = htmlspecialchars(trim($_POST['description'] ?? ''));
+// Put sanitized description back into POST so DTO/session preserves cleaned data
+
 
 // Validate Name
 if (empty($name)) {
@@ -50,9 +53,22 @@ if (empty($payment_type) || !in_array($payment_type, $allowed_payment_types)) {
 }
 
 // Validate Map ID
-$map = DB::select('maps')->where('id' , $map_id)->first();
+$map = DB::select('maps')->where('id', $map_id)->first();
 if (empty($map_id) || !is_numeric($map_id) || is_null($map)) {
     handleError("Valid map selection is required.");
+}
+
+// Validate Description
+if (empty($description)) {
+    handleError("Event description is required.");
+}
+
+if (strlen($description) < 10) {
+    handleError("Description must be at least 10 characters.");
+}
+
+if (strlen($description) > 1000) {
+    handleError("Description must not exceed 1000 characters.");
 }
 
 // Validate Photo Upload

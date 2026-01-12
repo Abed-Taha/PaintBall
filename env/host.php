@@ -1,5 +1,4 @@
 <?php
-
 class DB
 {
     private static $pdo;
@@ -30,7 +29,6 @@ class DB
 
             } catch (Exception $e) {
                 http_response_code(500);
-                DTO::session_error("Error in database connection");
                 header("Location:" . $_SERVER["HTTP_REFERER"]);
                 exit;
             }
@@ -213,7 +211,7 @@ class DB
             $stmt->execute($this->getParams());
         } catch (Exception $e) {
             http_response_code(500);
-            DTO::session_error("Something Went Wrong! ");
+            DTO::session_error($e->getMessage());
             header("Location:/");
             exit;
         }
@@ -246,7 +244,7 @@ class DB
             $stmt->execute(array_values($data));
         } catch (Exception $e) {
             http_response_code(500);
-            DTO::session_error("Something Went Wrong! ");
+            DTO::session_error($e->getMessage());
             header("Location:/");
             exit;
         }
@@ -282,7 +280,7 @@ class DB
             return $stmt->execute($params);
         } catch (Exception $e) {
             http_response_code(500);
-            DTO::session_error("Something Went Wrong!");
+            DTO::session_error($e->getMessage());
             header("Location:/");
             exit;
         }
@@ -309,7 +307,7 @@ class DB
             return $stmt->execute($this->getParams());
         } catch (Exception $e) {
             http_response_code(500);
-            DTO::session_error("Something Went Wrong!");
+            DTO::session_error($e->getMessage());
             header("Location:/");
             exit;
         }

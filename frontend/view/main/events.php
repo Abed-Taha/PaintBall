@@ -1,38 +1,19 @@
 <?php
 // request the event for data base 
 // code ... 
-$events = [
-    [
-        "id" => 1,
-        "title" => "Paintball Championship",
-        "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae reprehenderit quod mollitia fuga accusamus velit repudiandae.",
-        "img" => "Events.jpeg",
-        "start_date" => "12-10-2025"
-    ],
-    [
-        "id" => 2,
-        "title" => "Night Battle Event",
-        "description" => "This event happens at night under LED lights for an amazing experience. Full protective gear is provided.",
-        "img" => "Events.jpeg",
-        "start_date" => "22-11-2025"
-    ],
-    [
-        "id" => 3,
-        "title" => "Training Session with Pro",
-        "description" => "A professional instructor will guide new players through advanced tactical paintball strategies.",
-        "img" => "Events.jpeg",
-        "start_date" => "05-12-2025"
-    ],
-    [
-        "id" => 4,
-        "title" => "Roiters Team Battle",
-        "description" => "Compete with other roiters and gain points. Top players will be featured on the leaderboard!",
-        "img" => "Events.jpeg",
-        "start_date" => "30-12-2025"
-    ],
-];
+$events = DB::select(table: 'events')
+    ->where('start_date', '>=', date('Y-m-d'))
+    ->orderBy('start_date')
+    ->limit(5)
+    ->get();
 
-
+foreach ($events as &$event) {
+    // truncate description to 100 characters
+    if (strlen($event['description']) > 100) {
+        $event['description'] = substr($event['description'], 0, 100) . '...';
+    }
+    $event['map'] = DB::select('maps')->where('id', $event['map_id'])->get()[0];
+}
 ?>
 
 <div class="relative z-1 w-100">
@@ -42,10 +23,10 @@ $events = [
             <div class="events-item ">
                 <div>
                     <div>
-                        <h3><?= $event["title"] ?></h3>
+                        <h3><?= $event["name"] ?></h3>
                         <p>description : <?= substr($event["description"], 0, 100) ?></p>
                     </div>
-                    <div><img src="/backend/storage/images/<?= $event["img"] ?>" alt=""></div>
+                    <div><img src="/backend/storage/images/<?= $event["map"]['photo'] ?>" alt=""></div>
                 </div>
                 <div>
                     <p>Start-date : <?= $event["start_date"] ?></p>
