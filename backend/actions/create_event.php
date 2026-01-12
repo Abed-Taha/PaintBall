@@ -32,7 +32,8 @@ $data = [
     "payment_price" => $payment_price,
     "payment_date" => $payment_date,
     "payment_type" => $payment_type,
-    "map_id" => $map_id
+    "map_id" => $map_id,
+    "description" => $description
 ];
 
 try {

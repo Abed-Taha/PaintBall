@@ -1,10 +1,12 @@
-<?php 
+<?php
+
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $isVerifiedPage = $uri == "/verification_sent";
+require_once "./env/host.php";
 
 
-if( !$isVerifiedPage){
-    include_once __DIR__ . "/frontend/layouts/header.php"; 
+if (!$isVerifiedPage) {
+    include_once __DIR__ . "/frontend/layouts/header.php";
 }
 
 ?>
@@ -15,7 +17,7 @@ if( !$isVerifiedPage){
     <?php if (isset($_SESSION['response'])): ?>
         <div class="alert alert-<?= $_SESSION['response']['status'] ?>" id="alert" style="z-index: 999;">
             <?= htmlspecialchars($_SESSION['response']['message']) ?>
-            
+
         </div>
         <?php
     endif; ?>
@@ -85,8 +87,8 @@ if( !$isVerifiedPage){
 </main>
 <div id="mouse-cursor" class="absolute"></div>
 
-<?php 
-if(!$isVerifiedPage){
-    require_once __DIR__ . "/frontend/layouts/footer.php"; 
+<?php
+if (!$isVerifiedPage) {
+    require_once __DIR__ . "/frontend/layouts/footer.php";
 }
 ?>
