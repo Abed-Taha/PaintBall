@@ -22,6 +22,7 @@ $password = htmlspecialchars(trim($_POST['password'] ?? ''));
 $confirm_password = htmlspecialchars(trim($_POST["confirm_password"]) ?? '');
 
 require_once "../requests/registerRequest.php";
+require_once "../requests/passwordValidation.php";
 
 $hashed = password_hash($password, PASSWORD_BCRYPT);
 $fullName = $name . " " . $last_name;
@@ -51,7 +52,6 @@ DB::table("email_verification")->insert([
 $_SESSION['pending_verification_email'] = $email;
 
 require_once __DIR__ . "/../../mail/mail.php";
-sendVerificationEmail($email, $token);
 
 DTO::session_success("Welcome " . $user["name"]);
 header("Location:/verification_sent");

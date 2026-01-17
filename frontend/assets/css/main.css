@@ -309,9 +309,10 @@
   font-size: 16px;
   font-weight: 500;
   text-align: center;
-  position: absolute;
+  position: fixed;
   animation: fadeIn 0.5s ease;
   z-index: 4;
+  left : 0;
 }
 
 /* Error style */
@@ -326,7 +327,7 @@
   border: 1px solid #f5c2c7;
   transition: all 2s;
   background-size: 200% 100%;
-  animation: alertShine 2s linear infinite;
+  animation: alertShine 2s linear infinite , fadeout 1s ease 3s forwards;
 }
 
 .alert-success {
@@ -339,7 +340,7 @@
     #68c668 75%
   );
   background-size: 200% 100%;
-  animation: alertShine 2s linear infinite;
+  animation: alertShine 2s linear infinite , fadeout 1s ease 3s forwards;
 }
 
 .events-scroll {
@@ -397,29 +398,7 @@ aspect-ratio: 4/3;
   color: white;
 }
 
-#mouse-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 100px;
-  opacity: 0.4;
-  border-radius: 50%;
-  background: radial-gradient(
-    var(--brown-primary),
-    var(--brown-light),
-    var(--yellow-dark),
-    var(--yellow-primary),
-    var(--yellow-light)
-  );
-  filter: blur(8px);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out;
-  z-index: 9999;
-  box-shadow: 5px 5px 15px var(--white);
-  animation: mouse-rotate 5s ease-in-out alternate infinite;
-}
+
 
 select {
   appearance: none; /* Remove default arrow (works on most browsers) */
