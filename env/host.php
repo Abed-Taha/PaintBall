@@ -264,7 +264,7 @@ class DB
 
         if (!empty($this->wheres)) {
             $sql .= " WHERE ";
-            $parts = [];
+        $parts = [];
             foreach ($this->wheres as $i => $w) {
                 [$col, $op, $value, $type] = $w;
                 if ($i == 0)

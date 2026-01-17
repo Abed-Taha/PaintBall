@@ -1,13 +1,12 @@
 <?php
 
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-$isVerifiedPage = $uri == "/verification_sent";
+$isVerifiedPage = (($uri == "/verification_sent") || ($uri == "/reset-password"));
 require_once "./env/host.php";
 
 
-if (!$isVerifiedPage) {
     include_once __DIR__ . "/frontend/layouts/header.php";
-}
+
 
 ?>
 
@@ -19,9 +18,7 @@ if (!$isVerifiedPage) {
             <?= htmlspecialchars($_SESSION['response']['message']) ?>
 
         </div>
-        <?php
-    endif; ?>
-    <div id="hi"></div>
+    <?php endif; ?>
 
     <?php
     switch ($uri) {
@@ -66,7 +63,9 @@ if (!$isVerifiedPage) {
         case "/register":
             require_once __DIR__ . "/frontend/view/global/register.php";
             break;
-
+        case "/reset-password":
+            require_once __DIR__ . "/frontend/view/global/reset-password.php";
+            break;
 
 
         // verification  routes 
