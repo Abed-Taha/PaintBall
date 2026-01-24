@@ -342,13 +342,13 @@
   background-size: 200% 100%;
   animation: alertShine 2s linear infinite , fadeout 1s ease 3s forwards;
 }
-
-.events-scroll {
+.events {
   border-left: 10px solid var(--brown-dark);
   border-right: 10px solid var(--brown-dark);
   border-radius: 5px;
   box-shadow: 10px 0 10px var(--brown-dark), -10px 0 10px var(--brown-dark);
 }
+
 
 .grid-cl-2 {
   display: grid !important;
@@ -423,4 +423,37 @@ select:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
   outline: none;
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+.card-item {
+  padding: 15px;
+  width: 70%;
+  color : white ;
+}
+.card-item .title-section {
+  color: white ;
+  opacity: 0.9;
+}
+
+.card-item img {
+  display: block;
+  width: 100%;
+  max-height: 350px;
+  object-fit: fill;
+  border-radius: var(--radius);
+}
+
+.font-size {
+  font-size: 18px;
+}
+
+.card-item .description {
+  padding-left: 20px;
+  opacity: 0.7;
 }

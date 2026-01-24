@@ -144,7 +144,7 @@ class DB
     {
         foreach ($this->relations ?? [] as $name => $function) {
             foreach ($rows as $row) {
-                $row->$name = $function($row);
+                $row[$name] = $function($row);
             }
         }
     }

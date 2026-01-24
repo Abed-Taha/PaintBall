@@ -18,7 +18,7 @@ $instructors = [
         "name" => "Michael Lee",
         "email" => "michael.lee@example.com"
     ],
-     [
+    [
         "id" => 4,
         "photo" => "/backend/storage/images/Events.jpeg",
         "name" => "Bara'a AbdelGhani",
@@ -28,7 +28,7 @@ $instructors = [
 ?>
 
 <div class=" relative z-1 w-75 m-center">
-    <h3 class="text-center c-brown title">Our Instructors </h3>
+    <h1 class="text-center c-brown title">Our Instructors </h1>
     <div class="events-container flex flex-wrap m-center flex-column events-scroll" data-speed="2.4"
         style="height : 400px">
         <?php foreach ($instructors as $ins): ?>

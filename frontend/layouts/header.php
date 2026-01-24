@@ -68,7 +68,7 @@ session_start();
                             <a href="/backend/actions/logout.php">Logout</a>
                         </div>
 
-                        <?php
+                    <?php
                         break;
                     case "instructor": ?>
                         <div class="link-container  nav-link">
@@ -78,7 +78,7 @@ session_start();
                             <a href="/backend/actions/logout.php">Logout</a>
 
                         </div>
-                        <?php
+                    <?php
                         break;
                     default: ?>
                         <div class="link-container  nav-link">

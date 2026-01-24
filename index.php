@@ -1,11 +1,15 @@
 <?php
+define('BASE_PATH', ".");
+define("ENV_PATH", BASE_PATH . "/env");
+define("SERVICE_PATH", BASE_PATH . "/backend/services");
+define('IMG_PATH', BASE_PATH . '/backend/storage/images');
 
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $isVerifiedPage = (($uri == "/verification_sent") || ($uri == "/reset-password"));
 require_once "./env/host.php";
 
 
-    include_once __DIR__ . "/frontend/layouts/header.php";
+include_once BASE_PATH . "/frontend/layouts/header.php";
 
 
 ?>
@@ -76,10 +80,13 @@ require_once "./env/host.php";
             require_once __DIR__ . "/backend/actions/verify_email.php";
             break;
 
+        case "/event":
+            require_once __DIR__ . "/frontend/view/client/eventView.php";
+            break;
+
         // 404 routes 
         default:
             require_once __DIR__ . "/frontend/view/global/notFound.php";
-
     }
 
     ?>

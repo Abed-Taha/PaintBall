@@ -129,6 +129,9 @@ main {
 .items-center {
   align-items: center;
 }
+.items-end {
+  align-items: flex-end;
+}
 
 .flex-row {
   flex-direction: row;
@@ -258,9 +261,14 @@ main {
   text-align: center;
 }
 
+.text-none {
+  text-decoration: none !important;
+}
+
 .c-white {
   color: var(--white);
 }
+
 
 .c-brown {
   color: var(--brown-dark);
@@ -301,6 +309,9 @@ main {
 }
 .c-yellow {
   color : var(--yellow-primary);
+}
+.text-underline {
+  text-decoration: underline;
 }
 @media (max-width: 600px) {
   :root {
