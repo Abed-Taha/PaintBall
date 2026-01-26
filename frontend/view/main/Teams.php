@@ -35,7 +35,7 @@ $teams = [
 
 
 <div class=" relative z-1 w-75 m-center">
-    <h3 class="text-center c-brown title">Our Teams </h3>
+    <h1 class="text-center c-brown title">Our Teams </h1>
     <div class="events-container  flex flex-wrap m-center flex-column events-scroll" data-speed="2.1"
         style="height : 400px">
         <?php foreach ($teams as $t): ?>

@@ -12,7 +12,7 @@ if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0777, true);
 }
 
-$file_name = time() . "_" . basename($_FILES["photo"]["name"]);
+$file_name = time() . "_PaintBall_event" .  pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
 $target_file = $upload_dir . $file_name;
 $relative_path =  $file_name;
 

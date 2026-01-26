@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../../../env/host.php";
+require_once  ENV_PATH . "/host.php";
 
 $filter = isset($_GET["filter"]) ? htmlspecialchars($_GET["filter"]) : 'all';
 $search = isset($_GET["search"]) ? trim(htmlspecialchars($_GET["search"])) : '';
@@ -51,30 +51,43 @@ $users = $query->get();
             <?php if (!empty($users)):
                 foreach ($users as $u): ?>
 
-                    <li class="flex user items-center content-between padding">
-                        <img src="/backend/storage/images/<?= $u["photo"] ?>" alt="not-found">
-                        <p>Name : <?= $u["name"] ?></p>
-                        <p>Email : <?= $u["email"] ?></p>
+                    <li class="flex items-center content-between" style=" padding: 10px; border-bottom: 1px solid #ddd;padding-left:20px;">
+
+                        <!-- Left side: User info -->
+                        <div class="grid items-center" style="grid-template-columns: auto 1fr; gap: 5px;">
+                            <!-- Pic + Name -->
+                            <img src="/backend/storage/images/<?= $u["photo"] ?>" alt="not-found" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;">
+                            <p style="padding-left:20px;margin: 0; font-weight: bold;" class="c-white"><?= $u["name"] ?></p>
+
+                            <!-- Email below, spanning both columns -->
+                            <div style="grid-column: span 2; margin-left: 0;">
+                                <p style="margin: 0; font-size: 14px;" class="c-white">Email: <?= $u["email"] ?></p>
+                            </div>
+                        </div>
+
+                        <!-- Right side: Button -->
                         <div>
-                            <form action="/backend/actions/userAction.php">
-                                <input type="text" name="id" hidden value="<?= $u['id'] ?>">
+                            <form action="/backend/actions/userAction.php" method="post">
+                                <input type="hidden" name="id" value="<?= $u['id'] ?>">
                                 <?php if (is_null($u['deleted_at'])): ?>
-                                    <button type="submit" name="delete" class="padding button z-3"><img
-                                            src="/frontend/assets/imgs/image.png" alt=""
-                                            style="transform: translateY(-15px);">Delete</button>
+                                    <button type="submit" name="delete" class="padding button w-100"><img src="/frontend/assets/imgs/image.png"
+                                            alt="button-delete">Delete</button>
                                 <?php else: ?>
-                                    <button type="submit" name="restore" class="padding button z-3"><img
-                                            src="/frontend/assets/imgs/image.png" alt=""
-                                            style="transform: translateY(-15px);">Restore</button>
+                                    <button type="submit" name="restore" class="padding button w-100"><img src="/frontend/assets/imgs/image.png"
+                                            alt="button-restore">restore</button>
                                 <?php endif; ?>
                             </form>
                         </div>
+
                     </li>
-                </ul>
+
+
+
                 <?php
                 endforeach;
             else: ?>
-            <li class="user text-center ">There is no user available with this selection</li>
-        <?php endif; ?>
+                <li class="user text-center ">There is no user available with this selection</li>
+            <?php endif; ?>
+        </ul>
     </div>
 </div>

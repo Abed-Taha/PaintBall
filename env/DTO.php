@@ -1,5 +1,7 @@
 <?php
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 class DTO
 {
     //fetch data methods
@@ -26,12 +28,10 @@ class DTO
     public static function session_error($message, $data = [])
     {
         self::session('error', $message, $data);
-
     }
 
     public static function session($status, $message, $data = [])
     {
         $_SESSION['response'] = ['status' => $status, "message" => $message, "data" => $data];
     }
-
 }

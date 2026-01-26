@@ -39,53 +39,55 @@ session_start();
 
 <body style="overflow-x: hidden;">
 
-    <header class="flex content-around items-center border-fade">
-        <img class="test" src="/frontend/assets/imgs/test-icon.png" draggable="false" alt="">
-        <div class="main-icon">
-            <a href="/" class="w-100 ">
-                <img src="/frontend/assets/imgs/main.png" style="object-fit: contain;" alt="" draggable="false">
-            </a>
-        </div>
+    <?php if (!$isVerifiedPage): ?>
 
-        <div class="hum">
-            <img src="/frontend/assets/imgs/hum.png" alt="" draggable="false">
-        </div>
-
-        <?php if (!isset($_SESSION["user"])): ?>
-            <div class=" link-container nav-link">
-                <a href="login" class="<?= $route == "/login" ? "active" : "" ?>">Login</a>
-                <a href="register" class="<?= $route == "/register" ? "active" : "" ?>">Register</a>
+        <header class="flex content-around items-center border-fade">
+            <img class="test" src="/frontend/assets/imgs/test-icon.png" draggable="false" alt="">
+            <div class="main-icon">
+                <a href="/" class="w-100 ">
+                    <img src="/frontend/assets/imgs/main.png" style="object-fit: contain;" alt="" draggable="false">
+                </a>
             </div>
-        <?php else: ?>
-            <?php switch ($_SESSION["user"]["role"]) {
-                case "admin": ?>
 
-                    <div class="link-container nav-link">
-                        <a href="/admin" class="<?= $route == "/admin" ? "active" : "" ?>">Manage Tools</a>
-                        <a href="/profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
-                        <a href="/backend/actions/logout.php">Logout</a>
-                    </div>
+            <div class="hum">
+                <img src="/frontend/assets/imgs/hum.png" alt="" draggable="false">
+            </div>
+
+            <?php if (!isset($_SESSION["user"])): ?>
+                <div class=" link-container nav-link">
+                    <a href="login" class="<?= $route == "/login" ? "active" : "" ?>">Login</a>
+                    <a href="register" class="<?= $route == "/register" ? "active" : "" ?>">Register</a>
+                </div>
+            <?php else: ?>
+                <?php switch ($_SESSION["user"]["role"]) {
+                    case "admin": ?>
+
+                        <div class="link-container nav-link">
+                            <a href="/admin" class="<?= $route == "/admin" ? "active" : "" ?>">Manage Tools</a>
+                            <a href="/profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
+                            <a href="/backend/actions/logout.php">Logout</a>
+                        </div>
 
                     <?php
-                    break;
-                case "instructor": ?>
-                    <div class="link-container  nav-link">
-                        <a href="profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
-                        <a href="tasks" class="<?= $route == "/tasks" ? "active" : "" ?>">Tasks</a>
-                        <a href="profile" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
-                        <a href="/backend/actions/logout.php">Logout</a>
+                        break;
+                    case "instructor": ?>
+                        <div class="link-container  nav-link">
+                            <a href="profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
+                            <a href="tasks" class="<?= $route == "/tasks" ? "active" : "" ?>">Tasks</a>
+                            <a href="profile" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
+                            <a href="/backend/actions/logout.php">Logout</a>
 
-                    </div>
+                        </div>
                     <?php
-                    break;
-                default: ?>
-                    <div class="link-container  nav-link">
-                        <a href="profile" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
-                        <a href="profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
-                        <a href="/backend/actions/logout.php">Logout</a>
-                    </div>
-            <?php } ?>
-        <?php endif; ?>
+                        break;
+                    default: ?>
+                        <div class="link-container  nav-link">
+                            <a href="profile" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
+                            <a href="profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
+                            <a href="/backend/actions/logout.php">Logout</a>
+                        </div>
+                <?php } ?>
+            <?php endif; ?>
 
 
 
@@ -93,4 +95,5 @@ session_start();
 
 
 
-    </header>
+        </header>
+    <?php endif; ?>

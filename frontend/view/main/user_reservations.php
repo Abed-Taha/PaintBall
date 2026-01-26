@@ -23,7 +23,7 @@
 
 
 <div class="relative z-1 w-100 flex flex-column items-center">
-    <h3 class="text-center c-brown title"> Your Reservations !</h3>
+    <h1 class="text-center c-brown title"> Your Reservations !</h1>
 
     <!-- Scroll wrapper -->
     <div class="w-100 flex content-center" id='reservations-table' style="overflow-x: auto; overflow-y: hidden;">
