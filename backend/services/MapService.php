@@ -9,7 +9,7 @@ class MapService
             return null;
         }
 
-        $map = \DB::table("maps")
+        $map = \DB::select("maps")
             ->where("id", $mapId)
             ->first() ?? null;
 

@@ -84,6 +84,14 @@ include_once BASE_PATH . "/frontend/layouts/header.php";
             require_once __DIR__ . "/frontend/view/client/eventView.php";
             break;
 
+        case "/detail":
+            require_once $_SERVER["DOCUMENT_ROOT"] . "/frontend/view/global/detail.php";
+            break;
+        case "/team":
+            require_once $_SERVER["DOCUMENT_ROOT"] . "/frontend/view/main/team_display.php";
+            break;
+        case "/members":
+            require_once $_SERVER["DOCUMENT_ROOT"] . "/frontend/view/client/members.php";
         // 404 routes 
         default:
             require_once __DIR__ . "/frontend/view/global/notFound.php";

@@ -136,3 +136,22 @@ function showPasswordSection() {
   passwordSection.style.display = "block";
   togglePasswordBtn.textContent = "Cancel Password Change";
 }
+
+
+//// ------------- for Modal -----------------------
+const modal = document.getElementById("registerModal");
+const openBtn = document.querySelectorAll(".modal");
+const cancelBtn = document.querySelectorAll(".cancelBtn");
+
+
+// Open modal
+openBtn.forEach(e => e.addEventListener("click", function () {
+    modal.style.display = "flex";
+}));
+
+// Cancel
+cancelBtn.forEach(e => e.addEventListener("click", function () {
+    modal.style.display = "none";
+}));
+
+

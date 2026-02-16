@@ -46,22 +46,14 @@ $old = $_SESSION['response']['data'] ?? [];
             </fieldset>
         </div>
 
-        <div class="form-gap margin grid-cl-2">
-            <!-- Payment Type -->
-            <fieldset class="input w-100">
-                <select required id="payment_type" name="payment_type"
-                    style="width: 100%; padding: 10px; background: transparent; border: 1px solid var(--white); color: var(--white); border-radius: 5px;">
-                    <option value="" disabled <?= empty($old['payment_type']) ? 'selected' : '' ?>>Select Payment Type
-                    </option>
-                    <option value="cash" <?= ($old['payment_type'] ?? '') === 'cash' ? 'selected' : '' ?>>Cash</option>
-                    <option value="credit" <?= ($old['payment_type'] ?? '') === 'credit' ? 'selected' : '' ?>>Credit
-                    </option>
-
-                </select>
-            </fieldset>
+        <div class="form-gap margin flex">
 
             <!-- Map ID (Dropdown from DB) -->
             <fieldset class="input w-100">
+                <fieldset class="input w-100 relative" style="height: max-content;">
+                    <input required type="file" id="photo" name="photo" accept="image/*" style="padding-top: 10px;" />
+                    <label for="photo">Photo</label>
+                </fieldset>
                 <select required id="map_id" name="map_id"
                     style="width: 100%; padding: 10px; background: transparent; border: 1px solid var(--white); color: var(--white); border-radius: 5px;">
                     <option value="" disabled <?= empty($old['map_id']) ? 'selected' : '' ?>>Select Map</option>
@@ -74,12 +66,7 @@ $old = $_SESSION['response']['data'] ?? [];
             </fieldset>
         </div>
 
-        <!-- Photo -->
         <div class="margin flex">
-            <fieldset class="input w-100 relative" style="height: max-content;">
-                <input required type="file" id="photo" name="photo" accept="image/*" style="padding-top: 10px;" />
-                <label for="photo">Photo</label>
-            </fieldset>
             <div class="input w-100">
                 <textarea id="desc" name="description" rows="3" class="w-100 rounded padding" placeholder="description"
                     style="border: 2px solid var(--white); background: transparent;"><?= htmlspecialchars($old['description'] ?? '') ?> </textarea>

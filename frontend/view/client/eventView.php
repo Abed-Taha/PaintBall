@@ -10,7 +10,7 @@ if ($event === null): ?>
 <?php else: ?>
     <div class="card-container">
         <div class="card-item  rounded bg-main">
-            <img src="<?= IMG_PATH . '/' . $event["photo"] ?>" alt="<?= $event["photo"] ?>" class="card-photo">
+            <img src="<?= IMG_PATH . '/' . $event["photo"] ?>" alt="<?= $event["photo"] ?>" class="card-photo" style="border-radius: 10px; width:100%; max-height:300px; object-fit: streach;">
             <div class="flex items-center title-section">
                 <h1 style="flex-grow: 2;">
                     <?= $event["name"] ?>

@@ -1,12 +1,7 @@
 <?php
 
 $adminRoutes = [
-    [
-        "link" => "/admin/roiter",
-        "title" => "Manage Roiter",
-        "description" => "View all roiters, track red points, and kick players if necessary.",
-        "photo" => "/frontend/assets/images/Roirters.jpeg"
-    ],
+
     [
         "link" => "/admin/instructors",
         "title" => "Instructors Management",
@@ -18,12 +13,6 @@ $adminRoutes = [
         "title" => "Manage Players",
         "description" => "Disable or delete players from the platform.",
         "photo" => "/frontend/assets/images/PlayersM.jpeg"
-    ],
-    [
-        "link" => "/admin/comments",
-        "title" => "Review Comments",
-        "description" => "Check comments flagged by AI for impolite or inappropriate words.",
-        "photo" => "/frontend/assets/images/ReviewM.jpeg"
     ],
     [
         "link" => "/admin/events",
@@ -63,7 +52,7 @@ $users = [
 ?>
 
 <div>
-    <div class="w-100 grid cl-3 h-100 mt-10  c-white flex-wrap gap padding links-container">
+    <div class="w-100 grid cl-3 h-100 mt-10  c-white flex-wrap gap padding content-around links-container">
         <?php foreach ($adminRoutes as $route): ?>
 
             <div class="bg-main rounded links-item relative items-center flex flex-wrap content-center">
