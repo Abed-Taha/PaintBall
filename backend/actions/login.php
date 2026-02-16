@@ -37,6 +37,7 @@ if (is_null($user["verified"])) {
             "created_at" => date("Y-m-d H:i:s")
         ]);
     } else {
+        global $email ;
         // Create new
         DB::table("email_verification")->insert([
             "user_id" => $user["id"],

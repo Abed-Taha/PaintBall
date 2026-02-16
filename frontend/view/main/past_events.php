@@ -17,7 +17,7 @@ foreach ($events as &$event) {
 ?>
 
 <div class="relative z-1 w-100">
-    <h3 class="text-center c-brown title">Past Events! </h3>
+    <h1 class="text-center c-brown title">Past Events! </h1>
     <div class="events-container flex flex-wrap  m-center events-scroll" data-speed="1.9">
         <?php foreach ($events as $event): ?>
             <div class="events-item ">
@@ -32,7 +32,7 @@ foreach ($events as &$event) {
                     <p>Start-date : <?= $event["start_date"] ?></p>
                     <button type="submit" class="button z-1" style="width: 200px;"><a
                             style="text-decoration: none ;  color : var(--brown-dark); "
-                            href="event/<?= $event["id"] ?>"><img src="/frontend/assets/imgs/image.png" alt=""
+                            href="event?id=<?= $event["id"] ?>"><img src="/frontend/assets/imgs/image.png" alt=""
                                 style="height: 40px !important;">
                             Go
                         </a>
