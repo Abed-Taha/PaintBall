@@ -1,32 +1,7 @@
 <?php
-$teams = [
-    [
-        "id" => 1,
-        "name" => "Red Dragons",
-        "photo" => "/backend/storage/images/Events.jpeg",
-        "number_of_members" => 8
-    ],
-    [
-        "id" => 2,
-        "name" => "Blue Tigers",
-        "photo" => "/backend/storage/images/Events.jpeg",
+require_once $_SERVER["DOCUMENT_ROOT"] . "/backend/services/TeamService.php";
 
-        "number_of_members" => 10
-    ],
-    [
-        "id" => 3,
-        "name" => "Green Wolves",
-        "photo" => "/backend/storage/images/Events.jpeg",
-
-        "number_of_members" => 6
-    ],
-    [
-        "id" => 4,
-        "name" => "Yellow Hawks",
-        "photo" => "/backend/storage/images/Events.jpeg",
-        "number_of_members" => 12
-    ]
-];
+$teams = TeamService::getAllTeam();
 
 
 
@@ -40,11 +15,11 @@ $teams = [
         style="height : 400px">
         <?php foreach ($teams as $t): ?>
             <div class="flex content-center padding flex-column instructor-item rounded">
-                <img src="<?= $t['photo'] ?>" class="rounded" alt="">
+                <img src="<?= IMG_PATH . '/' . $t['photo'] ?>" class="rounded" style="height:150px" alt="">
                 <p>Name : <?= $t['name'] ?></p>
-                <p>Numbers of Members : <?= $t['number_of_members'] ?></p>
+                <p>Numbers of Members : <?= $t['max_number'] ?></p>
                 <button type="submit" class="button z-1 w-100"><a
-                        style="text-decoration: none ;  color : var(--brown-dark);  " href="event/<?= $t["id"] ?>"><img
+                        style="text-decoration: none ;  color : var(--brown-dark);  " href="team?id=<?= $t["id"] ?>"><img
                             src="/frontend/assets/imgs/image.png" alt="" style="height: 40px !important;">
                         More info
                     </a>

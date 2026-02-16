@@ -20,7 +20,6 @@ $name = htmlspecialchars(trim($_POST['name'] ?? ''));
 $start_date = htmlspecialchars(trim($_POST['start_date'] ?? ''));
 $payment_price = htmlspecialchars(trim($_POST['payment_price'] ?? ''));
 $payment_date = htmlspecialchars(trim($_POST['payment_date'] ?? ''));
-$payment_type = htmlspecialchars(trim($_POST['payment_type'] ?? ''));
 $map_id = htmlspecialchars(trim($_POST['map_id'] ?? ''));
 $description = htmlspecialchars(trim($_POST['description'] ?? ''));
 // Put sanitized description back into POST so DTO/session preserves cleaned data
@@ -46,11 +45,7 @@ if (empty($payment_date)) {
     handleError("Payment date is required.");
 }
 
-// Validate Payment Type
-$allowed_payment_types = ['cash', 'credit'];
-if (empty($payment_type) || !in_array($payment_type, $allowed_payment_types)) {
-    handleError("Valid payment type is required.");
-}
+
 
 // Validate Map ID
 $map = DB::select('maps')->where('id', $map_id)->first();

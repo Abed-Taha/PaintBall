@@ -443,10 +443,9 @@ select:focus {
 
 .card-item img {
   display: block;
-  width: 100%;
-  max-height: 350px;
+  max-height: 95px;
   object-fit: fill;
-  border-radius: var(--radius);
+  border-radius: 50%;
 }
 
 .font-size {
@@ -457,3 +456,167 @@ select:focus {
   padding-left: 20px;
   opacity: 0.7;
 }
+
+/* Styles for detail.php reservation card */
+.reservation-info {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid var(--yellow-primary);
+}
+
+.reservation-info p, .reservation-info .info-row {
+  margin: 8px 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-info strong {
+  color: var(--yellow-primary);
+}
+
+.reservation-info span {
+  color: white;
+}
+
+.game-details, .map-info, .team-info {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-details h2, .map-info h2, .team-info h2 {
+  margin-top: 0;
+  color: var(--yellow-primary);
+  border-bottom: 2px solid var(--yellow-primary);
+  padding-bottom: 5px;
+}
+
+.teams {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.team, .opponent {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.team img, .opponent img {
+  margin-top: 10px;
+}
+
+.instructor, .bundle {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+}
+
+.instructor h3, .bundle h3 {
+  color: var(--yellow-primary);
+  margin-top: 0;
+}
+
+.user-info {
+  margin-left: 20px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.instructor-photo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.user-details p {
+  margin: 5px 0;
+}
+
+.bundle ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+.bundle li {
+  margin: 5px 0;
+}
+
+.map-info, .team-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.map-info img, .team-info img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card-item img.card-photo {
+  margin: 15px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-content {
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    text-align: center;
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-cancel {
+    background: #ccc;
+    padding: 8px 15px;
+    border: none;
+     border-radius: 10px;
+    cursor: pointer;
+}
+
+.modal-confirm {
+    background: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+

@@ -26,7 +26,6 @@ class DB
                     $user,
                     $pass
                 );
-
             } catch (Exception $e) {
                 http_response_code(500);
                 header("Location:" . $_SERVER["HTTP_REFERER"]);
@@ -223,6 +222,23 @@ class DB
         return $rows;
     }
 
+
+    public static function run($query)
+    {
+        DB::connect();
+        $stmt = self::$pdo->prepare($query);
+        try {
+            $stmt->execute();
+        } catch (Exception $e) {
+            http_response_code(500);
+            DTO::session_error($e->getMessage());
+            header("Location:/");
+            exit;
+        }
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    }
+
     public function first()
     {
         $this->limit(1);
@@ -264,7 +280,7 @@ class DB
 
         if (!empty($this->wheres)) {
             $sql .= " WHERE ";
-        $parts = [];
+            $parts = [];
             foreach ($this->wheres as $i => $w) {
                 [$col, $op, $value, $type] = $w;
                 if ($i == 0)
@@ -314,13 +330,9 @@ class DB
     }
     public static function hasRole($role, $user_id): bool
     {
-        return !empty(
-            self::select('users')
-                ->where('id', $user_id)
-                ->where('role', $role)
-                ->first()
-        );
+        return !empty(self::select('users')
+            ->where('id', $user_id)
+            ->where('role', $role)
+            ->first());
     }
 }
-
-

@@ -14,7 +14,7 @@ class EventService
             return null;
         }
 
-        $event = \DB::table("events")
+        $event = \DB::select("events")
             ->where("id", $eventId)
             ->first();
 

@@ -70,10 +70,10 @@ $users = $query->get();
                             <form action="/backend/actions/userAction.php" method="post">
                                 <input type="hidden" name="id" value="<?= $u['id'] ?>">
                                 <?php if (is_null($u['deleted_at'])): ?>
-                                    <button type="submit" name="delete" class="padding button w-100"><img src="/frontend/assets/imgs/image.png"
+                                    <button type="submit" name="delete" class="padding button w-100" style="width: 100%; background: #c19066; color: #c19066; min-width: 250px;"><img style="transform:translateY(-5px);" class="w-100" src="/frontend/assets/imgs/image.png"
                                             alt="button-delete">Delete</button>
                                 <?php else: ?>
-                                    <button type="submit" name="restore" class="padding button w-100"><img src="/frontend/assets/imgs/image.png"
+                                    <button type="submit" name="restore" class="padding button w-100" style="width: 100%; background: #c19066; color: #c19066; min-width: 250px;"><img style="transform:translateY(-5px);" class="w-100" src="/frontend/assets/imgs/image.png"
                                             alt="button-restore">restore</button>
                                 <?php endif; ?>
                             </form>
