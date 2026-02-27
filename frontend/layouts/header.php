@@ -74,7 +74,7 @@ session_start();
                         <div class="link-container  nav-link">
                             <a href="profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
                             <a href="tasks" class="<?= $route == "/tasks" ? "active" : "" ?>">Tasks</a>
-                            <a href="profile" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
+                            <a href="/battle" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
                             <a href="/backend/actions/logout.php">Logout</a>
 
                         </div>
@@ -82,7 +82,7 @@ session_start();
                         break;
                     default: ?>
                         <div class="link-container  nav-link">
-                            <a href="profile" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
+                            <a href="/battle" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
                             <a href="profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
                             <a href="/backend/actions/logout.php">Logout</a>
                         </div>

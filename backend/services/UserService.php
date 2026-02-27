@@ -74,14 +74,23 @@ class UserService
         return $inst;
     }
 
-    public static function getInstructors(?int $limit = null)
+    public static function getInstructors(?int $limit = null , ?bool $available = false)
     {
-        if ($limit === null) {
+        if ($limit === null && $available === false) {
             $instructors = \DB::table("instructors")
                 ->get();
-        } else {
+        } else if ($limit !== null && $available === false) {
             $instructors = \DB::table("instructors")
                 ->limit($limit)
+                ->get();
+        } else if ($limit === null && $available === true) {
+            $instructors = \DB::table("instructors")
+                ->where("available", true)
+                ->get();
+        } else if ($limit !== null && $available === true) {
+            $instructors = \DB::table("instructors")
+                ->limit($limit)
+                ->where("available", true)
                 ->get();
         }
         foreach ($instructors as &$inst) {

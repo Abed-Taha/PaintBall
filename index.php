@@ -84,6 +84,10 @@ include_once BASE_PATH . "/frontend/layouts/header.php";
             require_once __DIR__ . "/frontend/view/client/eventView.php";
             break;
 
+        case "/battle":
+            require_once __DIR__ . "/frontend/view/main/reservation.php";
+            break;
+
         case "/detail":
             require_once $_SERVER["DOCUMENT_ROOT"] . "/frontend/view/global/detail.php";
             break;
