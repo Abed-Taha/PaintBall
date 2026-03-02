@@ -1,24 +1,23 @@
 <?php
 
 $adminRoutes = [
-
     [
-        "link" => "/admin/instructors",
+        "link" => "/PaintBall/index.php?v=admin/manageInstructors",
         "title" => "Instructors Management",
         "description" => "View existing instructors and add new ones to the system.",
-        "photo" => "/frontend/assets/images/InstructorM.jpeg"
+        "photo" => "/PaintBall/frontend/assets/images/InstructorM.jpeg"
     ],
     [
-        "link" => "/admin/users",
+        "link" => "/PaintBall/index.php?v=admin/managePlayers",
         "title" => "Manage Players",
         "description" => "Disable or delete players from the platform.",
-        "photo" => "/frontend/assets/images/PlayersM.jpeg"
+        "photo" => "/PaintBall/frontend/assets/images/PlayersM.jpeg"
     ],
     [
-        "link" => "/admin/events",
+        "link" => "/PaintBall/index.php?v=admin/create_event",
         "title" => "Add Paintball Events",
         "description" => "Create and manage new paintball events for players.",
-        "photo" => "/frontend/assets/images/Events.jpeg"
+        "photo" => "/PaintBall/frontend/assets/images/Events.jpeg"
     ],
 ];
 
@@ -26,24 +25,24 @@ $users = [
     [
         "id" => 1,
         "name" => "Abdallah Hassan",
-        "photo" => "/frontend/assets/images/Events.jpeg"
+        "photo" => "/PaintBall/frontend/assets/images/Events.jpeg"
     ],
     [
         "id" => 2,
         "name" => "Omar Khaled",
-        "photo" => "/frontend/assets/images/Events.jpeg"
+        "photo" => "/PaintBall/frontend/assets/images/Events.jpeg"
 
     ],
     [
         "id" => 3,
         "name" => "Sara Mahmoud",
-        "photo" => "/frontend/assets/images/Events.jpeg"
+        "photo" => "/PaintBall/frontend/assets/images/Events.jpeg"
 
     ],
     [
         "id" => 4,
         "name" => "John Doe",
-        "photo" => "/frontend/assets/images/Events.jpeg"
+        "photo" => "/PaintBall/frontend/assets/images/Events.jpeg"
 
     ],
 ];
@@ -65,7 +64,7 @@ $users = [
                 </p>
                 <button type="submit" class="padding button w-100 flex content-center items-center">
                     <a href="<?= $route["link"] ?>" style=" text-decoration: none;" class="c-brown">
-                        <img src="/frontend/assets/imgs/image.png" alt="">
+                        <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
                         Go
                     </a>
                 </button>
@@ -86,8 +85,8 @@ $users = [
             <?php endforeach; ?>
         </div>
         <button type="submit" class="padding button w-100 flex content-center items-center">
-            <a href="/admin/roiter" style=" text-decoration: none;" class="c-brown">
-                <img src="/frontend/assets/imgs/image.png" alt="">
+            <a href="/PaintBall/admin/roiter" style=" text-decoration: none;" class="c-brown">
+                <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
                 Show More Roiters
             </a>
         </button>

@@ -11,7 +11,7 @@ $old = $_SESSION['response']['data'] ?? [];
 ?>
 
 <div class="h-100 flex items-center flex-wrap padding">
-    <form action="/backend/actions/create_event.php" method="post" enctype="multipart/form-data"
+    <form action="/PaintBall/backend/actions/create_event.php" method="post" enctype="multipart/form-data"
         class="login-div bg-main padding" style="height: auto; max-width: 800px; margin: 0 auto;">
         <h2 style="text-align:center; color: var(--white)">Create Event</h2>
 
@@ -76,7 +76,7 @@ $old = $_SESSION['response']['data'] ?? [];
         <!-- Hidden ID field if needed for update, usually not for create but requested -->
         <input type="hidden" name="id" value="">
 
-        <button type="submit" class="padding button w-100"><img src="/frontend/assets/imgs/image.png" alt="">Create
+        <button type="submit" class="padding button w-100"><img src="/PaintBall/frontend/assets/imgs/image.png" alt="">Create
             Event</button>
 
     </form>

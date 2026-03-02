@@ -1,5 +1,5 @@
 <?php
-require_once "../../env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
 
 // Validate Name
 if (empty($name))
@@ -60,6 +60,6 @@ if (!empty($new_password)) {
 function handleError($message)
 {
     DTO::session_error($message, $_POST);
-    header("Location:/edit_profile");
+    header("Location: " . ($_SERVER['HTTP_REFERER'] ?? "/PaintBall/index.php?v=client/edit_profile"));
     exit;
 }

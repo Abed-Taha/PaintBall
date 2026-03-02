@@ -1,18 +1,18 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../env/host.php";
-require_once "../../env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
 
 header("Content-Type: application/json; charset=UTF-8");
 
 if (!isset($_SESSION["user"])) {
-    header("Location:/login");
+    header("Location: /PaintBall/index.php?v=global/login");
     exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     $_SESSION["error"] = "Invalid Request.";
-    header("Location:/profile");
+    header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=client/profile'));
     exit;
 }
 
@@ -24,7 +24,7 @@ $age = htmlspecialchars(trim($_POST["age"] ?? ""));
 
 
 // Basic validation replaced by Request file
-require_once "../requests/updateProfileRequest.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/backend/requests/updateProfileRequest.php";
 
     try {
     $updateData = [
@@ -63,17 +63,17 @@ require_once "../requests/updateProfileRequest.php";
                     $updateData['photo'] = $newFileName;
                 } else {
                      DTO::session_error("Error moving uploaded file.");
-                     header("Location:/edit_profile");
+                     header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=client/edit_profile'));
                      exit;
                 }
             } else {
                 DTO::session_error("File is too big. Max 2MB.");
-                header("Location:/edit_profile");
+                header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=client/edit_profile'));
                 exit;
             }
         } else {
             DTO::session_error("Invalid file type. Allowed: jpg, png, gif.");
-            header("Location:/edit_profile");
+            header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=client/edit_profile'));
             exit;
         }
     }
@@ -84,14 +84,14 @@ require_once "../requests/updateProfileRequest.php";
     
     if (empty($current_password)) {
         DTO::session_error("Current password is required to save changes.");
-        header("Location:/edit_profile");
+        header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=client/edit_profile'));
         exit;
     }
 
     $dbUser = DB::select("users")->where("id", $id)->get()[0];
     if (!password_verify($current_password, $dbUser["password"])) {
         DTO::session_error("Incorrect current password.");
-        header("Location:/edit_profile");
+        header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=client/edit_profile'));
         exit;
     }
 
@@ -107,7 +107,7 @@ require_once "../requests/updateProfileRequest.php";
         $existingUser = DB::select("users")->where("email", $email)->first();
         if ($existingUser) {
              DTO::session_error("Email is already taken.");
-             header("Location:/edit_profile");
+             header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=client/edit_profile'));
              exit;
         }
 
@@ -132,7 +132,7 @@ require_once "../requests/updateProfileRequest.php";
              // OR, better: Gather the data first, then decide to Update or Defer.
         }
 
-        require_once __DIR__ . "/../../mail/mail.php";
+        require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/mail/mail.php";
         
         $token = bin2hex(random_bytes(32));
         $expiredAt = date("Y-m-d H:i:s", strtotime("+10 minutes"));
@@ -158,7 +158,7 @@ require_once "../requests/updateProfileRequest.php";
         
         DTO::session_success("Profile update pending. Please verify your new email to apply changes.");
         // Redirect WITHOUT updating DB
-        header("Location:/verification_sent");
+        header("Location: /PaintBall/index.php?v=global/verification_sent");
         exit;
     }
 
@@ -199,9 +199,9 @@ require_once "../requests/updateProfileRequest.php";
     $_SESSION["user"] = $user;
 
     DTO::session_success("Profile updated successfully!");
-    header("Location:/profile");
+    header("Location: /PaintBall/index.php?v=client/profile");
 
 } catch (Exception $e) {
     DTO::session_error("Error updating profile. Please try again.");
-    header("Location:/edit_profile");
+    header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=client/edit_profile'));
 }

@@ -23,13 +23,13 @@ $confirm_password = isset($_POST['confirm_password']) ? $_POST['confirm_password
 
 if (!$email) {
     DTO::session_error("Email is required.");
-    header("Location: /login" . urlencode($email));
+    header("Location: /PaintBall/index.php?v=global/login&email=" . urlencode($email));
     exit;
 }
 
 if (!$tokenExists) {
     DTO::session_error("Invalid request.");
-    header("Location: /login" . urlencode($email));
+    header("Location: /PaintBall/index.php?v=global/login&email=" . urlencode($email));
     exit;
 }
 
@@ -46,7 +46,7 @@ $userUpdated = DB::table('users')
 
 if (!$userUpdated) {
     DTO::session_error("Failed to update password. Please try again.");
-    header("Location: /login" . urlencode($email));
+    header("Location: /PaintBall/index.php?v=global/login&email=" . urlencode($email));
     exit;
 }
 
@@ -57,5 +57,5 @@ DB::table('email_verification')
 
 // Redirect to login page with success message
 DTO::session_success("Your password has been updated successfully! You can now login.");
-header("Location: /login");
+header("Location: /PaintBall/index.php?v=global/login");
 exit;

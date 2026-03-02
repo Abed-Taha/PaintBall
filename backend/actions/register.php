@@ -1,14 +1,14 @@
 <?php
 
 session_start();
-require_once __DIR__ . "/../../env/host.php"; // your query builder
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php"; // your query builder
 header("Content-Type: application/json; charset=UTF-8");
 
 
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     $_SESSION["error"] = "Invalid Request.";
-    header("Location:/register");
+    header("Location: /PaintBall/index.php?v=global/register");
 }
 
 
@@ -21,8 +21,8 @@ $phone = htmlspecialchars(trim($_POST['phone'] ?? ''));
 $password = htmlspecialchars(trim($_POST['password'] ?? ''));
 $confirm_password = htmlspecialchars(trim($_POST["confirm_password"]) ?? '');
 
-require_once "../requests/registerRequest.php";
-require_once "../requests/passwordValidation.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/backend/requests/registerRequest.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/backend/requests/passwordValidation.php";
 
 $hashed = password_hash($password, PASSWORD_BCRYPT);
 $fullName = $name . " " . $last_name;
@@ -51,10 +51,10 @@ DB::table("email_verification")->insert([
 // Store in session for resend capability
 $_SESSION['pending_verification_email'] = $email;
 
-require_once __DIR__ . "/../../mail/mail.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/mail/mail.php";
 
 DTO::session_success("Welcome " . $user["name"]);
-header("Location:/verification_sent");
+header("Location: /PaintBall/index.php?v=global/verification_sent");
 
 
 ?>

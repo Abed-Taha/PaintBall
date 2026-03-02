@@ -20,7 +20,7 @@ $bundles = DB::table('bundels')->get();
         <div class="option-wrapper" id="booking-game-wrapper" style="overflow: hidden;">
             <input type="radio" name="battle-mode" id="booking-game" class="hidden-radio hidden-all" value="booking-game">
             <label for="booking-game" class="padding button flex items-center content-center bold" style="color:var(--brown-dark);">
-                <img src="/frontend/assets/imgs/image.png" style="width:190%;left:unset;">
+                <img src="/PaintBall/frontend/assets/imgs/image.png" style="width:190%;left:unset;">
                 Booking a Game
             </label>
         </div>
@@ -28,7 +28,7 @@ $bundles = DB::table('bundels')->get();
         <div class="option-wrapper" id="instructor-wrapper" style="overflow: hidden;">
             <input type="radio" name="battle-mode" id="instructor" class="hidden-radio hidden-all" value="instructor">
             <label for="instructor" class="padding button flex items-center content-center bold" style="color:var(--brown-dark);">
-                <img src="/frontend/assets/imgs/image.png" alt="" style="width:190%; left:unset;">
+                <img src="/PaintBall/frontend/assets/imgs/image.png" alt="" style="width:190%; left:unset;">
                 Instructor
             </label>
         </div>
@@ -38,7 +38,7 @@ $bundles = DB::table('bundels')->get();
     <div id="booking-content" class="w-100 flex flex-column items-center" style="display: none;">
         <h2 class="c-yellow margin">Game Booking Form</h2>
         
-        <form action="/backend/actions/create_reservation.php" method="post" enctype="multipart/form-data" class="login-div bg-main padding w-100" style="height: auto; max-width: 800px;">
+        <form action="/PaintBall/backend/actions/create_reservation.php" method="post" enctype="multipart/form-data" class="login-div bg-main padding w-100" style="height: auto; max-width: 800px;">
             <input type="hidden" name="type" value="game">
             
             <div class="form-gap margin grid-cl-2">
@@ -152,11 +152,11 @@ $bundles = DB::table('bundels')->get();
 
             <div class="flex gap-10 mt-10">
                 <button type="submit" class="padding button w-100" style="color:var(--brown-dark);">
-                    <img src="/frontend/assets/imgs/image.png" alt="">
+                    <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
                     Book Now
                 </button>
                 <button type="button" class="padding button w-100" onclick="resetToggle()" style="color:var(--brown-dark);">
-                    <img src="/frontend/assets/imgs/image.png" alt="">
+                    <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
                     Cancel
                 </button>
             </div>
@@ -166,7 +166,7 @@ $bundles = DB::table('bundels')->get();
     <div id="instructor-content" class="w-100 flex flex-column items-center" style="display: none;">
         <h2 class="c-yellow margin">Instructor Booking Form</h2>
         
-        <form action="/backend/actions/create_reservation.php" method="post" class="login-div bg-main padding w-100" style="height: auto; max-width: 800px;">
+        <form action="/PaintBall/backend/actions/create_reservation.php" method="post" class="login-div bg-main padding w-100" style="height: auto; max-width: 800px;">
             <input type="hidden" name="type" value="instructor">
             
             <div class="form-gap margin">
@@ -208,11 +208,11 @@ $bundles = DB::table('bundels')->get();
 
             <div class="flex gap-10 mt-10">
                 <button type="submit" class="padding button w-100" style="color:var(--brown-dark);">
-                    <img src="/frontend/assets/imgs/image.png" alt="">
+                    <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
                     Book Instructor
                 </button>
                 <button type="button" class="padding button w-100" onclick="resetToggle()" style="color:var(--brown-dark);">
-                    <img src="/frontend/assets/imgs/image.png" alt="">
+                    <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
                     Cancel
                 </button>
             </div>

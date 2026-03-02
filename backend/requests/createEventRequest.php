@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../../env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
 
 // Check if the request method is POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -86,6 +86,6 @@ if (!isset($_FILES['photo']) || $_FILES['photo']['error'] !== UPLOAD_ERR_OK) {
 function handleError($message)
 {
     DTO::session_error($message, $_POST);
-    header("Location: /admin/events");
+    header("Location: /PaintBall/index.php?v=admin/create_event");
     exit;
 }

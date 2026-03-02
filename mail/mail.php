@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . './mailProvider.php';
+require_once __DIR__ . '/mailProvider.php';
 
-$verificationLink = "http://localhost:8001/backend/actions/verify_email.php?token=" . $token;
+$verificationLink = "http://" . $_SERVER['HTTP_HOST'] . "/PaintBall/index.php?v=verify&token=" . $token;
 $body =
     '
 <!DOCTYPE html>

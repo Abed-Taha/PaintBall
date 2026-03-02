@@ -26,13 +26,13 @@ foreach ($events as &$event) {
                         <h3><?= $event["name"] ?></h3>
                         <p>description : <?= substr($event["description"], 0, 100) ?></p>
                     </div>
-                    <div><img src="/backend/storage/images/<?= $event["map"]['photo'] ?>" alt=""></div>
+                    <div><img src="/PaintBall/backend/storage/images/<?= $event["map"]['photo'] ?>" alt=""></div>
                 </div>
                 <div>
                     <p>Start-date : <?= $event["start_date"] ?></p>
                     <button type="submit" class="button z-1" style="width: 200px;"><a
                             style="text-decoration: none ;  color : var(--brown-dark); "
-                            href="event?id=<?= $event["id"] ?>"><img src="/frontend/assets/imgs/image.png" alt=""
+                            href="/PaintBall/index.php?v=client/eventView&id=<?= $event["id"] ?>"><img src="/PaintBall/frontend/assets/imgs/image.png" alt=""
                                 style="height: 40px !important;">
                             Go
                         </a>

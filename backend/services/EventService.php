@@ -1,7 +1,6 @@
 <?php
 
-require_once  __DIR__ . "/../../env/host.php";
-require_once  __DIR__ . "/../../env/host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
 require_once __DIR__ . "/MapService.php";
 
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . "/../requests/instructorManageRequest.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/backend/requests/instructorManageRequest.php";
 
 $new_role = '';
 if ($action === 'promote') {
@@ -22,5 +22,5 @@ try {
     DTO::session_error("Error: " . $e->getMessage());
 }
 
-header("Location: /admin/instructors");
+header("Location: " . ($_SERVER["HTTP_REFERER"] ?? "/PaintBall/index.php?v=admin/manageInstructors"));
 exit();

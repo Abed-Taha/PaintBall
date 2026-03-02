@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/backend/services/UserService.php";
+require_once ROOT . "/backend/services/UserService.php";
 $instructors = UserService::getInstructors(4);
 ?>
 
@@ -9,12 +9,12 @@ $instructors = UserService::getInstructors(4);
         style="height : 400px">
         <?php foreach ($instructors as $ins): ?>
             <div class="flex items-center content-center padding flex-column instructor-item rounded" style="width: 300px; min-height: 450px;">
-                <img src="/backend/storage/images/<?= $ins['user']['photo'] ?>" class="rounded" alt="" style="width: 200px; height: 200px; object-fit: cover;">
+                <img src="/PaintBall/backend/storage/images/<?= $ins['user']['photo'] ?>" class="rounded" alt="" style="width: 200px; height: 200px; object-fit: cover;">
                 <p style="text-align: center;">Name : <?= $ins['user']['name'] ?></p>
                 <p style="text-align: center;">Email : <?= $ins['user']['email'] ?></p>
                 <button type="submit" class="button z-1 w-100"><a
-                        style="text-decoration: none ;  color : var(--brown-dark);  " href="/profile?id=<?= $ins["id"] ?>"><img
-                            src="/frontend/assets/imgs/image.png" alt="" style="height: 40px !important;">
+                        style="text-decoration: none ;  color : var(--brown-dark);  " href="/PaintBall/index.php?v=client/profile&id=<?= $ins["id"] ?>"><img
+                            src="/PaintBall/frontend/assets/imgs/image.png" alt="" style="height: 40px !important;">
                         More info
                     </a>
                 </button>

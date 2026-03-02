@@ -1,9 +1,9 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/backend/services/GamesService.php";
+require_once ROOT . "/backend/services/GamesService.php";
 $reservation = GamesService::getGamesReservationById(1);
 // Assuming IMG_PATH is defined somewhere, like in a config or header
 if (!defined('IMG_PATH')) {
-    define('IMG_PATH', '/frontend/assets/images');
+    define('IMG_PATH', '/PaintBall/backend/storage/images');
 }
 ?>
 
@@ -23,27 +23,27 @@ if (!defined('IMG_PATH')) {
         <div class="game-details">
             <h2>Game Details</h2>
             <p><strong>Duration:</strong> <?= htmlspecialchars($reservation["games"]["game_duration"]) ?> minutes</p>
-            <img src="<?= IMG_PATH . '/' . htmlspecialchars($reservation["games"]["photo"]) ?>" alt="Game Photo" class="card-photo" style="width: 200px; height: 200px; object-fit: cover; border-radius: 4px;">
+            <img src="<?= IMG_PATH . htmlspecialchars($reservation["games"]["photo"]) ?>" alt="Game Photo" class="card-photo" style="width: 200px; height: 200px; object-fit: cover; border-radius: 4px;">
 
             <div class="teams">
                 <div class="team">
                     <h3>Team</h3>
                     <p><strong>Name:</strong> <?= htmlspecialchars($reservation["games"]["team"]["name"]) ?></p>
                     <p><strong>Max Players:</strong> <?= htmlspecialchars($reservation["games"]["team"]["max_number"]) ?></p>
-                    <img src="<?= IMG_PATH . '/' . htmlspecialchars($reservation["games"]["team"]["photo"]) ?>" alt="Team Photo" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px;">
+                    <img src="<?= IMG_PATH . htmlspecialchars($reservation["games"]["team"]["photo"]) ?>" alt="Team Photo" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px;">
                 </div>
                 <div class="opponent">
                     <h3>Opponent</h3>
                     <p><strong>Name:</strong> <?= htmlspecialchars($reservation["games"]["opponent"]["name"]) ?></p>
                     <p><strong>Max Players:</strong> <?= htmlspecialchars($reservation["games"]["opponent"]["max_number"]) ?></p>
-                    <img src="<?= IMG_PATH . '/' . htmlspecialchars($reservation["games"]["opponent"]["photo"]) ?>" alt="Opponent Photo" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px;">
+                    <img src="<?= IMG_PATH . htmlspecialchars($reservation["games"]["opponent"]["photo"]) ?>" alt="Opponent Photo" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px;">
                 </div>
             </div>
 
             <div class="instructor">
                 <h3 style="border-bottom: 2px solid var(--yellow-primary);">Instructor</h3>
                 <div class="user-info">
-                    <img src="<?= IMG_PATH . '/' . htmlspecialchars($reservation["games"]["instructor"]["user"]["photo"]) ?>" alt="Instructor Photo" class="instructor-photo">
+                    <img src="<?= IMG_PATH . htmlspecialchars($reservation["games"]["instructor"]["user"]["photo"]) ?>" alt="Instructor Photo" class="instructor-photo">
                     <div class="user-details">
                         <p><strong>Name:</strong> <?= htmlspecialchars($reservation["games"]["instructor"]["user"]["name"]) ?></p>
                         <p><strong>Email:</strong> <?= htmlspecialchars($reservation["games"]["instructor"]["user"]["email"]) ?></p>
@@ -71,7 +71,7 @@ if (!defined('IMG_PATH')) {
             <h2 class="w-100">Map</h2>
             <div class="flex content-between w-100">
                 <p><strong>Name:</strong> <?= htmlspecialchars($reservation["map"]["name"]) ?></p>
-                <img src="<?= IMG_PATH . '/' . htmlspecialchars($reservation["map"]["photo"]) ?>" alt="Map Photo" style="width: 100%;align-self:flex-end; max-width:300px;height: 150px; object-fit: cover; border-radius: 4px;">
+                <img src="<?= IMG_PATH . htmlspecialchars($reservation["map"]["photo"]) ?>" alt="Map Photo" style="width: 100%;align-self:flex-end; max-width:300px;height: 150px; object-fit: cover; border-radius: 4px;">
             </div>
         </div>
     </div>

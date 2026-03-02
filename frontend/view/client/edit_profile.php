@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION["user"])) {
-    header("Location:/login");
+    header("Location: /PaintBall/index.php?v=global/login");
     exit;
 }
 $user = $_SESSION["user"];
@@ -15,20 +15,20 @@ if ($user['role'] === 'instructor') {
 
 <div class="m-center w-50 bg-main rounded padding">
     <h2 class="text-center c-brown">Edit Profile</h2>
-    <form action="/backend/actions/update_profile.php" method="POST" enctype="multipart/form-data" class="flex flex-column form-gap">
+    <form action="/PaintBall/backend/actions/update_profile.php" method="POST" enctype="multipart/form-data" class="flex flex-column form-gap">
         
         <!-- Profile Photo Section -->
         <div class="flex content-center mb-20">
             <div class="relative profile-img " style="width: 120px; height: 120px; cursor: pointer;" onclick="document.getElementById('photoInput').click()">
                 <?php 
-                    $photoPath ='/backend/storage/images/' . $user["photo"];
+                    $photoPath = '/PaintBall/backend/storage/images/' . $user["photo"];
                 ?>
                 <img id="photoPreview" src="<?= htmlspecialchars($photoPath) ?>" alt="Profile Photo" class="rounded" 
                      style="width: 100%; height: 100%; obejct-fit : cover ; border: 3px solid var(--brown-primary); ">
                 
                 <div class="absolute flex content-center items-center" 
                      style="bottom: 0; right: 0; background: var(--brown-primary); width: 35px; border-radius: 50%; height: 35px;  border: 2px solid white;">
-                    <img src="/frontend/assets/imgs/edit.png" alt="Edit" style="width: 40px; border-radius: 50%; filter: invert(1);"> 
+                    <img src="/PaintBall/frontend/assets/imgs/edit.png" alt="Edit" style="width: 40px; border-radius: 50%; filter: invert(1);"> 
                   
                 </div>
             </div>
@@ -86,13 +86,13 @@ if ($user['role'] === 'instructor') {
                 <fieldset class="input relative">
                     <input id="current_password" type="password" name="current_password" class="input-password" required />
                     <label for="current_password">Current Password (Required)</label>
-                    <img src="/frontend/assets/imgs/eye-open.png" class="show-password" data-type="hide" alt="">
+                    <img src="/PaintBall/frontend/assets/imgs/eye-open.png" class="show-password" data-type="hide" alt="">
                 </fieldset>
 
                 <fieldset class="input relative mt-10">
                     <input id="new_password" type="password" name="new_password" class="input-password"/>
                     <label for="new_password">New Password (Optional)</label>
-                    <img src="/frontend/assets/imgs/eye-open.png" class="show-password" data-type="hide" alt="">
+                    <img src="/PaintBall/frontend/assets/imgs/eye-open.png" class="show-password" data-type="hide" alt="">
                 </fieldset>
             </div>
         </div>
@@ -100,10 +100,10 @@ if ($user['role'] === 'instructor') {
 
         <div class="flex content-center gap-10 mt-10">
             <button type="submit" class="button padding">
-                <img src="/frontend/assets/imgs/image.png" alt="" class="w-100">
+                <img src="/PaintBall/frontend/assets/imgs/image.png" alt="" class="w-100">
                 Save Changes
             </button>
-            <a href="/profile" class="button padding" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">Cancel <img src="/frontend/assets/imgs/image.png" alt=""></a>
+            <a href="/PaintBall/index.php?v=client/profile" class="button padding" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">Cancel <img src="/PaintBall/frontend/assets/imgs/image.png" alt=""></a>
         </div>
 
     </form>

@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../env/host.php";
-require_once __DIR__ . "/../../env/DTO.php";
-require_once __DIR__ . "/../../mail/mail.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/mail/mail.php";
 
 $emailToVerify = null;
 $userId = null;
@@ -33,7 +33,7 @@ if (!$emailToVerify && isset($_SESSION['user'])) {
 // If we still don't have an email, we can't resend
 if (!$emailToVerify || !$userId) {
     DTO::session_error("No pending verification found.");
-    header("Location:/");
+    header("Location: /PaintBall/");
     exit;
 }
 
@@ -70,5 +70,5 @@ if (sendVerificationEmail($emailToVerify, $token)) {
     DTO::session_error("Failed to resend email. Please try again later.");
 }
 
-header("Location:/verification_sent");
+header("Location: /PaintBall/index.php?v=global/verification_sent");
 exit;

@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $toEmail = trim($_POST['email'] ?? '');
 
     if (!empty($toEmail) && empty($token)) {
-        require_once "backend/actions/reset-passwordVerfication.php"; // your query builder
+        require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/backend/actions/reset-passwordVerfication.php"; // your query builder
         $sent = true;
     }
 

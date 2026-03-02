@@ -1,6 +1,6 @@
 <?php
 
-require_once BASE_PATH . '/backend/services/EventService.php';
+require_once ROOT . '/backend/services/EventService.php';
 
 $eventId = isset($_GET['id']) ? intval($_GET['id']) : null;
 $event = EventService::getEventById($eventId);
@@ -10,7 +10,7 @@ if ($event === null): ?>
 <?php else: ?>
     <div class="card-container">
         <div class="card-item  rounded bg-main">
-            <img src="<?= IMG_PATH . '/' . $event["photo"] ?>" alt="<?= $event["photo"] ?>" class="card-photo" style="border-radius: 10px; width:100%; max-height:300px; object-fit: streach;">
+            <img src="<?= IMG_PATH . $event["photo"] ?>" alt="<?= $event["photo"] ?>" class="card-photo" style="border-radius: 10px; width:100%; max-height:300px; object-fit: streach;">
             <div class="flex items-center title-section">
                 <h1 style="flex-grow: 2;">
                     <?= $event["name"] ?>
@@ -31,7 +31,7 @@ if ($event === null): ?>
                 <!-- Map info on the right -->
                 <div class="flex flex-column items-center" style=" gap: 4px; ">
                     <p class="m-0 font-size text-center c-white"><u>In Map: </u><?= $event["map"]["name"] ?></p>
-                    <img src="<?= IMG_PATH . '/' . $event["map"]["photo"] ?>"
+                    <img src="<?= IMG_PATH . $event["map"]["photo"] ?>"
                         alt="<?= $event["map"]["name"] ?>"
                         style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px;">
                 </div>

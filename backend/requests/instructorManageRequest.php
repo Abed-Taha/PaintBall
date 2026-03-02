@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../../env/host.php";
-require_once __DIR__ . "/../../env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user']) || !DB::hasRole('admin', $_SESSION['user']['id'])) {

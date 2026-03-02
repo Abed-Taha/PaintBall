@@ -1,34 +1,17 @@
 <?php
-require_once  ENV_PATH . "/host.php";
+require_once ROOT . "/env/host.php";
+require_once ROOT . "/backend/services/UserService.php";
 
 $filter = isset($_GET["filter"]) ? htmlspecialchars($_GET["filter"]) : 'all';
 $search = isset($_GET["search"]) ? trim(htmlspecialchars($_GET["search"])) : '';
 
-$query = DB::select('users')
-    ->where('id', '!=', (int) $_SESSION["user"]['id']);
-
-
-switch ($filter) {
-    case "deleted":
-        $query->whereNotNull("deleted_at");
-        break;
-    case "active":
-        $query->whereNull("deleted_at");
-        break;
-    case "all":
-}
-
-
-if (!empty($search)) {
-    $query->where('name', 'LIKE', "%$search%");
-}
-
-$users = $query->get();
+$users = UserService::getUsersForAdmin($filter, $search, $_SESSION["user"]['id'] ?? null);
 ?>
 
 <div>
     <div class="bg-main m-center flex w-75 flex-column rounded padding">
-        <form action="" method="get" class="flex gap-2 content-around items-center">
+        <form action=""  class="flex gap-2 content-around items-center">
+            <input type="hidden" name="v" value="admin/managePlayers">
 
             <!-- Filter Dropdown -->
             <select name="filter" class="text-center" onchange="this.form.submit()">
@@ -42,7 +25,7 @@ $users = $query->get();
                 <label for="pass">Name</label>
             </fieldset>
 
-            <button type="submit" class="padding button z-3 w-25"><img src="/frontend/assets/imgs/image.png"
+            <button type="submit" class="padding button z-3 w-25"><img src="/PaintBall/frontend/assets/imgs/image.png"
                     alt="not-found">Search</button>
         </form>
 
@@ -56,7 +39,7 @@ $users = $query->get();
                         <!-- Left side: User info -->
                         <div class="grid items-center" style="grid-template-columns: auto 1fr; gap: 5px;">
                             <!-- Pic + Name -->
-                            <img src="/backend/storage/images/<?= $u["photo"] ?>" alt="not-found" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;">
+                            <img src="/PaintBall/backend/storage/images/<?= $u["photo"] ?>" alt="not-found" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;">
                             <p style="padding-left:20px;margin: 0; font-weight: bold;" class="c-white"><?= $u["name"] ?></p>
 
                             <!-- Email below, spanning both columns -->
@@ -67,13 +50,13 @@ $users = $query->get();
 
                         <!-- Right side: Button -->
                         <div>
-                            <form action="/backend/actions/userAction.php" method="post">
+                            <form action="/PaintBall/backend/actions/userAction.php" method="post">
                                 <input type="hidden" name="id" value="<?= $u['id'] ?>">
                                 <?php if (is_null($u['deleted_at'])): ?>
-                                    <button type="submit" name="delete" class="padding button w-100" style="width: 100%; background: #c19066; color: #c19066; min-width: 250px;"><img style="transform:translateY(-5px);" class="w-100" src="/frontend/assets/imgs/image.png"
+                                    <button type="submit" name="delete" class="padding button w-100" style="width: 100%; background: #c19066; color: #c19066; min-width: 250px;"><img style="transform:translateY(-5px);" class="w-100" src="/PaintBall/frontend/assets/imgs/image.png"
                                             alt="button-delete">Delete</button>
                                 <?php else: ?>
-                                    <button type="submit" name="restore" class="padding button w-100" style="width: 100%; background: #c19066; color: #c19066; min-width: 250px;"><img style="transform:translateY(-5px);" class="w-100" src="/frontend/assets/imgs/image.png"
+                                    <button type="submit" name="restore" class="padding button w-100" style="width: 100%; background: #c19066; color: #c19066; min-width: 250px;"><img style="transform:translateY(-5px);" class="w-100" src="/PaintBall/frontend/assets/imgs/image.png"
                                             alt="button-restore">restore</button>
                                 <?php endif; ?>
                             </form>

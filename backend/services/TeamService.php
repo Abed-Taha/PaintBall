@@ -1,7 +1,7 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/env/host.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
 
 class TeamService
 {

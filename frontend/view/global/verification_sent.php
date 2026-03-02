@@ -77,7 +77,7 @@ block(basename(__FILE__));
         
         <div style="margin-top: 20px;">
             <p style="font-size: 14px; margin-bottom: 10px;">Didn't receive the email?</p>
-            <form action="/backend/actions/resend_verification.php" method="POST">
+            <form action="/PaintBall/backend/actions/resend_verification.php" method="POST">
                 <button type="submit" style="
                     background: none;
                     border: 1px solid #e0aa25;

@@ -211,7 +211,7 @@ class DB
         } catch (Exception $e) {
             http_response_code(500);
             DTO::session_error($e->getMessage());
-            header("Location:/");
+            header("Location: /PaintBall/");
             exit;
         }
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -232,7 +232,7 @@ class DB
         } catch (Exception $e) {
             http_response_code(500);
             DTO::session_error($e->getMessage());
-            header("Location:/");
+            header("Location: /PaintBall/");
             exit;
         }
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -261,7 +261,7 @@ class DB
         } catch (Exception $e) {
             http_response_code(500);
             DTO::session_error($e->getMessage());
-            header("Location:/");
+            header("Location: /PaintBall/");
             exit;
         }
 
@@ -297,7 +297,7 @@ class DB
         } catch (Exception $e) {
             http_response_code(500);
             DTO::session_error($e->getMessage());
-            header("Location:/");
+            header("Location: /PaintBall/");
             exit;
         }
     }
@@ -324,7 +324,7 @@ class DB
         } catch (Exception $e) {
             http_response_code(500);
             DTO::session_error($e->getMessage());
-            header("Location:/");
+            header("Location: /PaintBall/");
             exit;
         }
     }

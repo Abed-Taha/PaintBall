@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../env/host.php"; // Database connection
-require_once __DIR__ . "/../../env/DTO.php"; // Data Transfer Object for responses
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php"; // Database connection
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php"; // Data Transfer Object for responses
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     DTO::session_error("Invalid Request Method.");
-    header("Location: /battle");
+    header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=main/reservation'));
     exit();
 }
 
@@ -26,7 +26,7 @@ if ($type === 'game') {
 
     if (!$team_id || !$opponent_id || !$instructor_id || !$game_duration || !$bundel_id || !$map_id || !$date || !$payment_price || !$payment_type || !$payment_date || !isset($_FILES['photo'])) {
         DTO::session_error("All fields are required for game booking.", $_POST);
-        header("Location: /battle");
+        header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=main/reservation'));
         exit();
     }
 
@@ -42,7 +42,7 @@ if ($type === 'game') {
 
     if (!move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
         DTO::session_error("Failed to upload photo.", $_POST);
-        header("Location: /battle");
+        header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=main/reservation'));
         exit();
     }
 
@@ -81,7 +81,7 @@ if ($type === 'game') {
 
         if ($reservation) {
             DTO::session_success("Game reservation created successfully!");
-            header("Location: /battle");
+            header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=main/reservation'));
         } else {
             throw new Exception("Failed to insert into game_reservations table.");
         }
@@ -92,7 +92,7 @@ if ($type === 'game') {
             unlink($target_file);
         }
         DTO::session_error("An error occurred: " . $e->getMessage(), $_POST);
-        header("Location: /battle");
+        header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=main/reservation'));
     }
 } else if ($type === 'instructor') {
     $instructor_id = $_POST['instructor_id'] ?? null;
@@ -103,7 +103,7 @@ if ($type === 'game') {
 
     if (!$instructor_id || !$payment_price || !$payment_type || !$payment_date || !$user_id) {
         DTO::session_error("All fields are required for instructor booking.", $_POST);
-        header("Location: /battle");
+        header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=main/reservation'));
         exit();
     }
 
@@ -120,13 +120,13 @@ if ($type === 'game') {
 
         if ($reservation) {
             DTO::session_success("Instructor booked successfully!");
-            header("Location: /battle");
+            header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=main/reservation'));
         } else {
             throw new Exception("Failed to book instructor.");
         }
     } catch (Exception $e) {
         DTO::session_error("An error occurred: " . $e->getMessage(), $_POST);
-        header("Location: /battle");
+        header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/PaintBall/index.php?v=main/reservation'));
     }
 }
 exit();
