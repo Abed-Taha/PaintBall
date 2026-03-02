@@ -50,11 +50,11 @@
                         <td><?= htmlspecialchars($fb["in_map"]) ?></td>
                         <td><?= htmlspecialchars($fb["date_time"]) ?></td>
                         <td>
-                            <a href="details.php?from=<?= urlencode($fb['from']) ?>&to=<?= urlencode($fb['to']) ?>"
+                            <a href="/PaintBall/index.php?v=main/details&from=<?= urlencode($fb['from']) ?>&to=<?= urlencode($fb['to']) ?>"
                                 class="button"
                                 style="display:flex; justify-content:center; align-items:center; text-decoration:none; color: var(--brown-light);">
                                 <span class="z-2"> Go</span>
-                                <img src="/frontend/assets/imgs/image.png" alt="Go"
+                                <img src="/PaintBall/frontend/assets/imgs/image.png" alt="Go"
                                     style="height:60px; transform:translateY(-15px); margin-right:5px;">
 
                             </a>

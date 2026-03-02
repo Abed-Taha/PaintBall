@@ -1,7 +1,7 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/env/host.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/env/DTO.php";
-require_once $_SERVER["DOCUMENT_ROOT"] .  "/backend/services/TeamService.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/backend/services/TeamService.php";
 
 class UserService
 {
@@ -130,5 +130,29 @@ class UserService
                 "team_id" => $id,
             ]);
         DTO::session_success("you are now member of the team : " . $team["name"]);
+    }
+
+    public static function getUsersForAdmin($filter = 'all', $search = '', $excludeId = null)
+    {
+        $query = \DB::select('users');
+        
+        if ($excludeId !== null) {
+            $query->where('id', '!=', (int) $excludeId);
+        }
+
+        switch ($filter) {
+            case "deleted":
+                $query->whereNotNull("deleted_at");
+                break;
+            case "active":
+                $query->whereNull("deleted_at");
+                break;
+        }
+
+        if (!empty($search)) {
+            $query->where('name', 'LIKE', "%$search%");
+        }
+
+        return $query->get();
     }
 }

@@ -1,11 +1,9 @@
 <?php
-
-require_once $_SERVER["DOCUMENT_ROOT"] . "/env/host.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/env/DTO.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/backend/services/MapService.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/backend/services/TeamService.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/backend/services/UserService.php";
-
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
+require_once __DIR__ . "/MapService.php";
+require_once __DIR__ . "/TeamService.php";
+require_once __DIR__ . "/UserService.php";
 
 
 class GamesService

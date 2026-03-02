@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../env/host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
 
 if (!isset($_GET['token'])) {
     $_SESSION['response'] = [
         'status' => 'error',
         'message' => 'Invalid verification link.'
     ];
-    header("Location:/");
+    header("Location: /PaintBall/");
     exit();
 }
 
@@ -21,7 +21,7 @@ if (!$verification) {
         'status' => 'error',
         'message' => 'Invalid or expired verification link.'
     ];
-    header("Location:/");
+    header("Location: /PaintBall/");
     exit();
 }
 
@@ -31,7 +31,7 @@ if (strtotime($verification['expired_at']) < time()) {
         'status' => 'error',
         'message' => 'Verification link has expired.'
     ];
-    header("Location:/");
+    header("Location: /PaintBall/");
     exit();
 }
 
@@ -103,5 +103,5 @@ if ($updated) {
     ];
 }
 
-header("Location:/");
+header("Location: /PaintBall/");
 exit();

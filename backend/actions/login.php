@@ -2,15 +2,15 @@
 
 
 session_start();
-require_once __DIR__ . "/../../env/host.php"; // your query builder
-require_once "../../env/DTO.php"; //data transfer object ;
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php"; // your query builder
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php"; //data transfer object ;
 
 
 header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     $_SESSION["error"] = "Invalid Request.";
-    header("Location:/login");
+    header("Location: /PaintBall/index.php?v=global/login");
 }
 
 $email = htmlspecialchars(trim($_POST["email"] ?? ""));
@@ -47,13 +47,13 @@ if (is_null($user["verified"])) {
         ]);
     }
 
-    require_once __DIR__ . "/../../mail/mail.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/mail/mail.php";
     
     // Store in session for resend capability
     $_SESSION['pending_verification_email'] = $email;
 
     sendVerificationEmail($email, $token);
-    header("Location:/verification_sent");
+    header("Location: /PaintBall/index.php?v=global/verification_sent");
     exit;
 }
 }
@@ -62,15 +62,15 @@ if ($user && password_verify($password, $user["password"])) {
     verified();
     if (!is_null($user["deleted_at"])) {
         DTO::session_error("This account is Disabled !");
-        header("Location:/login");
+        header("Location: /PaintBall/index.php?v=global/login");
         exit;
     }
 
     DTO::session_success("Welcome back " . $user['name']);
     $_SESSION["user"] = $user;
-    header("Location:/");
+    header("Location: /PaintBall/");
 } else {
     DTO::session_error("Invalid email or password.", $_POST);
-    header("Location:/login");
+    header("Location: /PaintBall/index.php?v=global/login");
     exit;
 }

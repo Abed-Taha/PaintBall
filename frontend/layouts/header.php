@@ -15,15 +15,15 @@ session_start();
 
 
     <!-- icon -->
-    <link rel="icon" href="/frontend/assets/imgs/mainIcon.jpeg" type="image/x-icon">
+    <link rel="icon" href="/PaintBall/frontend/assets/imgs/mainIcon.jpeg" type="image/x-icon">
     <!-- CSS -->
 
-    <link rel="stylesheet" href="/frontend/assets/css/index.css">
-    <link rel="stylesheet" href="/frontend/assets/css/header.css">
-    <link rel="stylesheet" href="/frontend/assets/css/main.css">
-    <link rel="stylesheet" href="/frontend/assets/css/footer.css">
-    <link rel="stylesheet" href="/frontend/assets/css/admin.css">
-    <link rel="stylesheet" href="/frontend/assets/css/keyframse.css">
+    <link rel="stylesheet" href="/PaintBall/frontend/assets/css/index.css">
+    <link rel="stylesheet" href="/PaintBall/frontend/assets/css/header.css">
+    <link rel="stylesheet" href="/PaintBall/frontend/assets/css/main.css">
+    <link rel="stylesheet" href="/PaintBall/frontend/assets/css/footer.css">
+    <link rel="stylesheet" href="/PaintBall/frontend/assets/css/admin.css">
+    <link rel="stylesheet" href="/PaintBall/frontend/assets/css/keyframse.css">
 
 
 
@@ -42,49 +42,48 @@ session_start();
     <?php if (!$isVerifiedPage): ?>
 
         <header class="flex content-around items-center border-fade">
-            <img class="test" src="/frontend/assets/imgs/test-icon.png" draggable="false" alt="">
+            <img class="test" src="/PaintBall/frontend/assets/imgs/test-icon.png" draggable="false" alt="">
             <div class="main-icon">
-                <a href="/" class="w-100 ">
-                    <img src="/frontend/assets/imgs/main.png" style="object-fit: contain;" alt="" draggable="false">
+                <a href="/PaintBall/" class="w-100 ">
+                    <img src="/PaintBall/frontend/assets/imgs/main.png" style="object-fit: contain;" alt="" draggable="false">
                 </a>
             </div>
 
             <div class="hum">
-                <img src="/frontend/assets/imgs/hum.png" alt="" draggable="false">
+                <img src="/PaintBall/frontend/assets/imgs/hum.png" alt="" draggable="false">
             </div>
 
             <?php if (!isset($_SESSION["user"])): ?>
                 <div class=" link-container nav-link">
-                    <a href="login" class="<?= $route == "/login" ? "active" : "" ?>">Login</a>
-                    <a href="register" class="<?= $route == "/register" ? "active" : "" ?>">Register</a>
+                    <a href="/PaintBall/index.php?v=global/login" class="<?= isset($_GET['v']) && $_GET['v'] == "global/login" ? "active" : "" ?>">Login</a>
+                    <a href="/PaintBall/index.php?v=global/register" class="<?= isset($_GET['v']) && $_GET['v'] == "global/register" ? "active" : "" ?>">Register</a>
                 </div>
             <?php else: ?>
                 <?php switch ($_SESSION["user"]["role"]) {
                     case "admin": ?>
 
                         <div class="link-container nav-link">
-                            <a href="/admin" class="<?= $route == "/admin" ? "active" : "" ?>">Manage Tools</a>
-                            <a href="/profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
-                            <a href="/backend/actions/logout.php">Logout</a>
+                            <a href="/PaintBall/index.php?v=admin/mainPage" class="<?= isset($_GET['v']) && $_GET['v'] == "admin/mainPage" ? "active" : "" ?>">Manage Tools</a>
+                            <a href="/PaintBall/index.php?v=client/profile" class="<?= isset($_GET['v']) && $_GET['v'] == "client/profile" ? "active" : "" ?>">Profile</a>
+                            <a href="/PaintBall/backend/actions/logout.php">Logout</a>
                         </div>
 
                     <?php
                         break;
                     case "instructor": ?>
                         <div class="link-container  nav-link">
-                            <a href="profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
-                            <a href="tasks" class="<?= $route == "/tasks" ? "active" : "" ?>">Tasks</a>
-                            <a href="/battle" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
-                            <a href="/backend/actions/logout.php">Logout</a>
-
+                            <a href="/PaintBall/index.php?v=client/profile" class="<?= isset($_GET['v']) && $_GET['v'] == "client/profile" ? "active" : "" ?>">Profile</a>
+                            <a href="/PaintBall/index.php?v=main/tasks" class="<?= isset($_GET['v']) && $_GET['v'] == "main/tasks" ? "active" : "" ?>">Tasks</a>
+                            <a href="/PaintBall/index.php?v=main/reservation" class="<?= isset($_GET['v']) && $_GET['v'] == "main/reservation" ? "active" : "" ?>">Battle with Us</a>
+                            <a href="/PaintBall/backend/actions/logout.php">Logout</a>
                         </div>
                     <?php
                         break;
                     default: ?>
                         <div class="link-container  nav-link">
-                            <a href="/battle" class="<?= $route == "/battle" ? "active" : "" ?>">Battle with Us</a>
-                            <a href="profile" class="<?= $route == "/profile" ? "active" : "" ?>">Profile</a>
-                            <a href="/backend/actions/logout.php">Logout</a>
+                            <a href="/PaintBall/index.php?v=main/reservation" class="<?= isset($_GET['v']) && $_GET['v'] == "main/reservation" ? "active" : "" ?>">Battle with Us</a>
+                            <a href="/PaintBall/index.php?v=client/profile" class="<?= isset($_GET['v']) && $_GET['v'] == "client/profile" ? "active" : "" ?>">Profile</a>
+                            <a href="/PaintBall/backend/actions/logout.php">Logout</a>
                         </div>
                 <?php } ?>
             <?php endif; ?>

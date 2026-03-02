@@ -1,10 +1,7 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/backend/services/TeamService.php";
+require_once ROOT . "/backend/services/TeamService.php";
 
 $teams = TeamService::getAllTeam();
-
-
-
 ?>
 
 
@@ -15,12 +12,12 @@ $teams = TeamService::getAllTeam();
         style="height : 400px">
         <?php foreach ($teams as $t): ?>
             <div class="flex content-center padding flex-column instructor-item rounded">
-                <img src="<?= IMG_PATH . '/' . $t['photo'] ?>" class="rounded" style="height:150px" alt="">
+                <img src="/PaintBall/backend/storage/images/<?= $t['photo'] ?>" class="rounded" style="height:150px" alt="">
                 <p>Name : <?= $t['name'] ?></p>
                 <p>Numbers of Members : <?= $t['max_number'] ?></p>
                 <button type="submit" class="button z-1 w-100"><a
-                        style="text-decoration: none ;  color : var(--brown-dark);  " href="team?id=<?= $t["id"] ?>"><img
-                            src="/frontend/assets/imgs/image.png" alt="" style="height: 40px !important;">
+                        style="text-decoration: none ;  color : var(--brown-dark);  " href="/PaintBall/index.php?v=main/team_display&id=<?= $t["id"] ?>"><img
+                            src="/paintball/frontend/assets/imgs/image.png" alt="" style="height: 40px !important;">
                         More info
                     </a>
                 </button>

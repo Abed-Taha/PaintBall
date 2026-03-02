@@ -1,6 +1,7 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/backend/services/GamesService.php";
-$reservations = GamesService::getReservations(3);
+
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/backend/services/GamesService.php";
+$reservations = GamesService::getReservations(limit: 3);
 ?>
 
 <div class="relative z-1 w-100 flex flex-column items-center">
@@ -32,9 +33,9 @@ $reservations = GamesService::getReservations(3);
                         <td><?= htmlspecialchars($row["map"]["name"]) ?></td>
                         <td>$<?= htmlspecialchars($row["payment_price"]) ?></td>
                         <td>
-                            <a href="detail?id=<?= $row["id"] ?>" class="button" style="display:flex; justify-content:center; align-items:center;
+                            <a href="/PaintBall/index.php?v=global/detail&id=<?= $row["id"] ?>" class="button" style="display:flex; justify-content:center; align-items:center;
                                       text-decoration:none; color: var(--brown-light);">
-                                <img src="/frontend/assets/imgs/image.png" alt="Go"
+                                <img src="/PaintBall/frontend/assets/imgs/image.png" alt="Go"
                                     style="height:60px; transform:translateY(-15px); margin-right:5px;">
                                 <span class="z-2">Go</span>
                             </a>

@@ -20,7 +20,7 @@ if (!$selectedTeam) {
 
     <div class="flex content-center padding flex-column bg-main rounded c-white" style="min-height: 400px; margin-bottom: 20px;">
 
-        <img src="<?= IMG_PATH . '/' . $selectedTeam['photo'] ?>"
+        <img src="<?= IMG_PATH . $selectedTeam['photo'] ?>"
             class="rounded"
             alt="<?= htmlspecialchars($selectedTeam['name']) ?>"
             style="width: 100%; height: 350px; object-fit: cover;">
@@ -39,7 +39,7 @@ if (!$selectedTeam) {
             foreach ($selectedTeam['members'] as $member):
                 if ($count >= $limit) break;
             ?>
-                <img src="<?= IMG_PATH . '/' . $member['photo'] ?>"
+                <img src="<?= IMG_PATH . $member['photo'] ?>"
                     class="rounded shadow"
                     alt="<?= htmlspecialchars($member['name']) ?>"
                     title="<?= htmlspecialchars($member['name']) ?>"
@@ -51,7 +51,7 @@ if (!$selectedTeam) {
 
             <?php if (count($selectedTeam['members']) > $limit): ?>
                 <span style="font-size: 0.9rem; color: var(--gray-light);">
-                    <a href="/members?id=<?= $selectedTeam["id"] ?>">
+                    <a href="/PaintBall/index.php?v=client/members&id=<?= $selectedTeam["id"] ?>">
                         +<?= count($selectedTeam['members']) - $limit ?>
                     </a>
                 </span>
@@ -59,7 +59,7 @@ if (!$selectedTeam) {
         </div>
 
         <button type="button" class="padding button w-100 modal">
-            <img src="/frontend/assets/imgs/image.png" alt="">
+            <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
             Register Now
         </button>
 
@@ -71,7 +71,7 @@ if (!$selectedTeam) {
 
                 <div class="modal-actions">
                     <button class="modal-cancel cancelBtn">Cancel</button>
-                    <form action="/backend/actions/registerToTeam.php">
+                    <form action="/PaintBall/backend/actions/registerToTeam.php">
                         <input type="hidden" name="id" value="<?= $teamId ?>">
                         <button id="confirmBtn" type="submit" class="modal-confirm" onclick="register()">Confirm</button>
                     </form>

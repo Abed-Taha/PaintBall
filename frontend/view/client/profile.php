@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION["user"])) {
-    header("Location:/login");
+    header("Location: /PaintBall/index.php?v=global/login");
     exit;
 }
 $user_id = $_GET["id"] ?? '';
@@ -19,14 +19,14 @@ if (!empty($user_id)) {
 <div class="flowY-scroll  grid form-gap">
     <div class="profile-container flex flex-column w-50 m-center items-center bg-main rounded padding">
         <div class="profile-img ">
-            <img src="/backend/storage/images/<?= $user["photo"] ?>" alt="">
+            <img src="<?= IMG_PATH . $user["photo"] ?>" alt="">
         </div>
         <div class="padding grid profile-items w-100 hover-brown">
             <p><span>Name : </span><?= $user["name"] ?></p>
             <p><span>Email : </span> <?= $user["email"] ?></p>
             <p><span>Phone : </span> <?= $user["phone"] ?> </p>
             <p><span>Age : </span> <?= $user["age"] ?> </p>
-            <?php if ($user['role'] === 'instructor'): 
+            <?php if ($user['role'] === 'instructor'):
                 $instructorData = DB::select('instructors')->where('user_id', $user['id'])->get();
                 $instructor = !empty($instructorData) ? $instructorData[0] : null;
             ?>
@@ -40,14 +40,14 @@ if (!empty($user_id)) {
                 <?php endif; ?>
             <?php endif; ?>
         </div>
-        
+
         <?php if ($_SESSION["user"]["id"] === $user["id"]): ?>
             <div class="w-100 flex content-center mt-10">
-                <a href="/edit_profile" class="button padding w-75" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">
-                    <img src="/frontend/assets/imgs/image.png" alt="" >
+                <a href="/PaintBall/index.php?v=client/edit_profile" class="button padding w-75" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">
+                    <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
                     Edit Profile
                 </a>
-                
+
             </div>
         <?php endif; ?>
     </div>

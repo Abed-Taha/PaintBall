@@ -46,7 +46,7 @@ $members = TeamService::getTeamMembers($_GET["id"]);
 
 <div class="members-container">
     <?php foreach ($members as $member): ?>
-        <a href="/profile?id=<?= $member['id'] ?>" class="member-card bg-main ">
+        <a href="/PaintBall/index.php?v=client/profile&id=<?= $member['id'] ?>" class="member-card bg-main ">
 
             <div class="member-photo ">
                 <img src="<?= IMG_PATH . '/default-profile.png' ?>"

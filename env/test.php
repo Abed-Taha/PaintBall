@@ -1,5 +1,5 @@
 <?php
-require_once "./host.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php";
 
 $user = DB::select("users")->where("id", 11)  
 // هون ما فهمت ليه حاتط user الرقم 11 

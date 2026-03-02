@@ -4,16 +4,16 @@ block(basename(__FILE__));
 ?>
 <?php if (!$isVerifiedPage): ?>
     <footer class="flex content-around">
-        <img class="icon" src="/frontend/assets/imgs/blood-splatter.png" draggable="false" alt="">
-        <img class="icon" src="/frontend/assets/imgs/blood-splatter.png" draggable="false" alt="">
+        <img class="icon" src="/PaintBall/frontend/assets/imgs/blood-splatter.png" draggable="false" alt="">
+        <img class="icon" src="/PaintBall/frontend/assets/imgs/blood-splatter.png" draggable="false" alt="">
         <div>
             <div>
                 <h3>PaintBall</h3>
                 <p>Your adventure starts here.</p>
             </div>
 
-            <div class="flex " style="gap : 10px"> <img src="/frontend/assets/imgs/instagram.png" width="30" alt=""><img
-                    src="/frontend/assets/imgs/xIcon.png" width="30" style="border-radius: 10px;" alt=""><img src="" alt="">
+            <div class="flex " style="gap : 10px"> <img src="/PaintBall/frontend/assets/imgs/instagram.png" width="30" alt=""><img
+                    src="/PaintBall/frontend/assets/imgs/xIcon.png" width="30" style="border-radius: 10px;" alt=""><img src="" alt="">
             </div>
         </div>
         <div class="flex content-around links-container" style="width: 500px; gap: var(--gap);">
@@ -48,7 +48,7 @@ block(basename(__FILE__));
 <?php endif; ?>
 
 <!-- Scripts -->
-<script src="/frontend/assets/js/main.js"></script>
+<script src="/PaintBall/frontend/assets/js/main.js"></script>
 
 
 <?php unset($_SESSION["response"]); ?>

@@ -1,8 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE)
     session_start();
-require_once __DIR__ . "/../../env/host.php"; // your query builder
-require_once __DIR__ . "/../../env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/host.php"; // your query builder
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -14,7 +14,7 @@ $email = $_POST['email'] ?? '';
 
 if (!$email) {
     DTO::session_error("Email is required.");
-    header("Location: /reset-password");
+    header("Location: /PaintBall/index.php?v=global/reset-password");
     exit;
 }
 
@@ -44,6 +44,6 @@ DB::table('email_verification')->insert([
 ]);
 
 // Send reset email
-require_once __DIR__ . "/../../mail/resetMail.php"; // your query builder
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/mail/resetMail.php"; // your query builder
 
 

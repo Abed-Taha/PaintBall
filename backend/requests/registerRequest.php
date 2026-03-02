@@ -1,5 +1,5 @@
 <?php
-require_once "../../env/DTO.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/env/DTO.php";
 
 // Validate Name
 if (empty($name) || empty($last_name))
@@ -34,6 +34,6 @@ function handleError($message)
 {
     http_response_code(400);
     DTO::session_error($message, $_POST);
-    header("Location:/register");
+    header("Location: " . ($_SERVER['HTTP_REFERER'] ?? "/PaintBall/index.php?v=global/register"));
     exit;
 }

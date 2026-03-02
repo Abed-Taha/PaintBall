@@ -1,5 +1,5 @@
 <?php
-require_once  $_SERVER["DOCUMENT_ROOT"] . "/backend/services/UserService.php";
+require_once  $_SERVER["DOCUMENT_ROOT"] . "/PaintBall/backend/services/UserService.php";
 
 
 // Start session if needed
@@ -45,7 +45,7 @@ try {
         }
     }
 
-    header("Location:/admin/users");
+    header("Location: " . ($_SERVER["HTTP_REFERER"] ?? "/PaintBall/index.php?v=admin/managePlayers"));
     exit;
 } catch (PDOException $e) {
     handleError('Database error: ' . $e->getMessage());
@@ -54,6 +54,6 @@ try {
 function handleError($message)
 {
     DTO::session_error($message);
-    header("Location:/admin/users");
+    header("Location: " . ($_SERVER["HTTP_REFERER"] ?? "/PaintBall/index.php?v=admin/managePlayers"));
     exit;
 }

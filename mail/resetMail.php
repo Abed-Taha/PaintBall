@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/mailProvider.php'; // Composer autoload
-        $resetLink = "http://localhost:8001/reset-password?token=" . $token;
+        $resetLink = "http://" . $_SERVER['HTTP_HOST'] . "/PaintBall/index.php?v=global/reset-password&token=" . $token;
 
         $Body = '
 <!DOCTYPE html>
