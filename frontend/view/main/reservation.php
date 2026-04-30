@@ -21,6 +21,7 @@ $bundles = DB::table('bundels')->get();
         <button class="tab-button tab-active" data-target="booking-content">Booking a Game</button>
         <button class="tab-button" data-target="instructor-content">Instructor</button>
         <button class="tab-button" data-target="create-team-content">Create a Team</button>
+        <button class="tab-button" data-target="join-team-content">Join a Team</button>
     </div>
 
     <!-- Content Sections -->
@@ -254,6 +255,20 @@ $bundles = DB::table('bundels')->get();
                 </div>
             </form>
         </div>
+        <div id="join-team-content" class="tab-content w-100 flex flex-column items-center">
+            <h2 class="c-yellow margin">Join a Team</h2>
+
+            <div class="search-container w-100 flex gap-10 margin" style="max-width: 800px;">
+                <fieldset class="input w-100 relative">
+                    <input type="text" id="team-search" placeholder=" " class="w-100" />
+                    <label for="team-search">Search Team Name...</label>
+                </fieldset>
+            </div>
+
+            <div id="teams-list" class="grid-cl-2 w-100 margin" style="max-width: 800px; gap: 20px;">
+                <!-- Teams will be loaded here via AJAX -->
+            </div>
+        </div>
     </div> <!-- End tabs-content-wrapper -->
 </div>
 
@@ -349,6 +364,40 @@ $bundles = DB::table('bundels')->get();
         background: var(--brown-primary);
         color: white;
     }
+
+    .team-card {
+        background-color: var(--brown-dark);
+        border: 2px solid var(--brown-primary);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .team-card:hover {
+        transform: scale(1.02);
+    }
+
+    .team-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .team-info {
+        padding: 15px;
+    }
+
+    .team-info h3 {
+        color: var(--yellow-primary);
+        margin-bottom: 5px;
+        font-family: cursive;
+    }
+
+    .team-info p {
+        color: white;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
 </style>
 
 <script>
@@ -370,9 +419,80 @@ $bundles = DB::table('bundels')->get();
                 if (targetContent) {
                     targetContent.classList.add('tab-active');
                 }
+
+                // If Join Team tab is clicked, fetch teams
+                if (targetId === 'join-team-content') {
+                    fetchTeams();
+                }
             });
         });
+
+        // Search input listener
+        let searchTimeout;
+        const searchInput = document.getElementById('team-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    fetchTeams(e.target.value);
+                }, 500);
+            });
+        }
     });
+
+    async function fetchTeams(search = '') {
+        const list = document.getElementById('teams-list');
+        list.innerHTML = '<div class="loader c-white">Loading teams...</div>';
+
+        try {
+            const response = await fetch(`/PaintBall/backend/actions/get_teams.php?search=${encodeURIComponent(search)}`);
+            const result = await response.json();
+
+            if (result.status === 200) {
+                renderTeams(result.data, result.is_already_in_any_team);
+            } else {
+                list.innerHTML = `<div class="c-red">Error: ${result.message}</div>`;
+            }
+        } catch (error) {
+            list.innerHTML = '<div class="c-red">Failed to fetch teams.</div>';
+        }
+    }
+
+    function renderTeams(teams, is_already_in_any_team) {
+        const list = document.getElementById('teams-list');
+        if (teams.length === 0) {
+            list.innerHTML = '<div class="c-white">No teams found.</div>';
+            return;
+        }
+
+        list.innerHTML = teams.map(team => `
+            <div class="team-card ">
+             
+                <img src="${team.photo ? '/PaintBall/backend/storage/images/' + team.photo : '/PaintBall/frontend/assets/imgs/image.png'}" alt="${team.name}">
+                <div class="team-info">
+                    <div >
+                        <h3>${team.name}</h3>
+                        <p>Players: ${team.current_members} </p>
+                        <p>Available : ${team.max_number - team.current_members}</p>
+                    </div>
+                    <form action="/PaintBall/backend/actions/join_team.php" method="post" id="join-team-form">
+                        <input type="hidden" name="team_id" value="${team.id}">
+                    <button 
+                        type="button"
+                        class="padding button w-100" 
+                        style="color:var(--brown-dark);" 
+                        ${team.is_joined || team.current_members >= team.max_number || (is_already_in_any_team && !team.is_joined) ? 'disabled' : ''}
+                    >
+                        <img src="/PaintBall/frontend/assets/imgs/image.png" alt="${team.name}" onclick="document.getElementById('join-team-form').submit()"style="width:120%;transform:translateX(-10px);height:50px;">
+                        ${team.is_joined ? 'Joined' : (team.current_members >= team.max_number ? 'Full' : (is_already_in_any_team ? 'Join Team' : 'Join Team'))}
+                    </button>
+                    </form>
+                </div>
+            </div>
+        `).join('');
+    }
+
+
 
     function resetPreview() {
         document.getElementById('photo-preview-container').style.display = 'none';

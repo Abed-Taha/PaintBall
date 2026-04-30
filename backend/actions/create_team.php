@@ -15,6 +15,13 @@ if (!isset($_SESSION['user']) || !isset($_SESSION['user']['id'])) {
 $userId = $_SESSION['user']['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Check if user is already in a team
+    if (TeamService::hasAnyTeam($userId)) {
+        DTO::session_error("You are already a member of a team. You cannot create a new one.");
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
     $data = $_POST;
     $file = isset($_FILES['team_photo']) ? $_FILES['team_photo'] : null;
 
