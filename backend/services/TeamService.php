@@ -38,4 +38,27 @@ class TeamService
         $members = DB::run($query);
         return $members;
     }
+
+    public static function createTeam($name, $maxPlayers, $photoPath = null)
+    {
+        $teamData = [
+            'name' => $name,
+            'max_number' => $maxPlayers,
+            'points' => 0 // Initialize points
+        ];
+
+        if ($photoPath !== null) {
+            $teamData['photo'] = $photoPath;
+        }
+
+        return DB::table('teams')->insert($teamData);
+    }
+
+    public static function joinTeam($userId, $teamId)
+    {
+        return DB::table('user_team')->insert([
+            'user_id' => $userId,
+            'team_id' => $teamId
+        ]);
+    }
 }

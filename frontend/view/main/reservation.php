@@ -20,8 +20,7 @@ $bundles = DB::table('bundels')->get();
     <div class="tabs-header flex gap-10 margin content-center w-100">
         <button class="tab-button tab-active" data-target="booking-content">Booking a Game</button>
         <button class="tab-button" data-target="instructor-content">Instructor</button>
-        <!-- Add your third tab here if needed: -->
-        <!-- <button class="tab-button" data-target="third-content">Third Section</button> -->
+        <button class="tab-button" data-target="create-team-content">Create a Team</button>
     </div>
 
     <!-- Content Sections -->
@@ -210,15 +209,51 @@ $bundles = DB::table('bundels')->get();
             </form>
         </div>
 
-        <!-- Add your third section div here: -->
-        <!-- 
-    <div id="third-content" class="tab-content w-100 flex flex-column items-center">
-        <h2 class="c-yellow margin">Third Section Form</h2>
-        <form class="login-div bg-main padding w-100" style="height: auto; max-width: 800px;">
-            <p style="color: white; padding: 20px;">Third section content goes here.</p>
-        </form>
-    </div> 
-    -->
+        <div id="create-team-content" class="tab-content w-100 flex flex-column items-center">
+            <h2 class="c-yellow margin">Create a Team</h2>
+
+            <form action="/PaintBall/backend/actions/create_team.php" method="post" enctype="multipart/form-data" class="login-div bg-main padding w-100" style="height: auto; max-width: 800px;">
+                <input type="hidden" name="type" value="create_team">
+
+                <div class="form-gap margin grid-cl-2">
+                    <!-- Team Name -->
+                    <fieldset class="input w-100 relative">
+                        <input required type="text" id="team_name" name="team_name" placeholder=" " class="w-100" />
+                        <label for="team_name">Team Name</label>
+                    </fieldset>
+
+                    <!-- Max Players -->
+                    <fieldset class="input w-100 relative">
+                        <input required type="number" id="max_players" name="max_players" placeholder=" " min="1" class="w-100" />
+                        <label for="max_players">Max Players</label>
+                    </fieldset>
+                </div>
+
+                <div class="form-gap margin flex items-center gap-10">
+                    <!-- Team Photo Upload -->
+                    <fieldset class="input w-100 relative">
+                        <input required type="file" id="team_photo" name="team_photo" accept="image/*" onchange="previewImageTeam(event)" />
+                        <label for="team_photo">Team Photo</label>
+                    </fieldset>
+
+                    <!-- Team Photo Preview -->
+                    <div id="team-photo-preview-container" class="profile-img" style="display: none; width: 100px; height: 100px;">
+                        <img id="team-photo-preview" src="#" alt="Preview" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                    </div>
+                </div>
+
+                <div class="flex gap-10 mt-10">
+                    <button type="submit" class="padding button w-100" style="color:var(--brown-dark);">
+                        <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
+                        Create Team
+                    </button>
+                    <button type="button" class="padding button w-100" onclick="this.closest('form').reset(); document.getElementById('team-photo-preview-container').style.display='none'; document.getElementById('team-photo-preview').src='#';" style="color:var(--brown-dark);">
+                        <img src="/PaintBall/frontend/assets/imgs/image.png" alt="">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
     </div> <!-- End tabs-content-wrapper -->
 </div>
 
@@ -350,6 +385,16 @@ $bundles = DB::table('bundels')->get();
             const output = document.getElementById('photo-preview');
             output.src = reader.result;
             document.getElementById('photo-preview-container').style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function previewImageTeam(event) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const output = document.getElementById('team-photo-preview');
+            output.src = reader.result;
+            document.getElementById('team-photo-preview-container').style.display = 'block';
         };
         reader.readAsDataURL(event.target.files[0]);
     }
