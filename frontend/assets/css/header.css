@@ -31,11 +31,13 @@ header * {
 
 .main-icon img {
   width: 100%;
+  max-width: 250px;
   height: 100%;
   cursor: pointer;
   object-fit: fill !important;
   position: relative;
   z-index: 7;
+
 }
 
 .icon:nth-child(1) {

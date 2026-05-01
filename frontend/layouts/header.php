@@ -4,6 +4,12 @@ block(basename(__FILE__));
 $route = $_SERVER["REQUEST_URI"];
 require_once __DIR__ . "/../../env/host.php";
 session_start();
+if (isset($_SESSION["user"])) {
+    $_SESSION["user"] =  DB::table("users")
+        ->where("id", $_SESSION["user"]["id"])
+        ->whereNull("deleted_at")
+        ->first();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

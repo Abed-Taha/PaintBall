@@ -51,16 +51,4 @@ if (!empty($user_id)) {
             </div>
         <?php endif; ?>
     </div>
-
-
-
-    <div class="flex felx-wrap bg-main content-around rounded">
-        <div>
-            <h1>Solo Carrer </h1>
-        </div>
-        <div>
-            <h1>Team Carrer </h1>
-        </div>
-
-    </div>
 </div>
