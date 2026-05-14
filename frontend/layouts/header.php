@@ -25,7 +25,7 @@ if (isset($_SESSION["user"])) {
     <!-- CSS -->
 
     <link rel="stylesheet" href="/PaintBall/frontend/assets/css/index.css">
-    <link rel="stylesheet" href="/PaintBall/frontend/assets/css/header.css">
+    <link rel="stylesheet" href="/PaintBall/frontend/assets/css/header.css?v=<?= time() ?>">
     <link rel="stylesheet" href="/PaintBall/frontend/assets/css/main.css">
     <link rel="stylesheet" href="/PaintBall/frontend/assets/css/footer.css">
     <link rel="stylesheet" href="/PaintBall/frontend/assets/css/admin.css">
@@ -71,7 +71,7 @@ if (isset($_SESSION["user"])) {
                         <div class="link-container nav-link">
                             <a href="/PaintBall/index.php?v=admin/mainPage" class="<?= isset($_GET['v']) && $_GET['v'] == "admin/mainPage" ? "active" : "" ?>">Manage Tools</a>
                             <a href="/PaintBall/index.php?v=client/profile" class="<?= isset($_GET['v']) && $_GET['v'] == "client/profile" ? "active" : "" ?>">Profile</a>
-                            <a href="/PaintBall/backend/actions/logout.php">Logout</a>
+                            <button onclick="openLogoutModal()" class="logout-btn">Logout</button>
                         </div>
 
                     <?php
@@ -81,7 +81,7 @@ if (isset($_SESSION["user"])) {
                             <a href="/PaintBall/index.php?v=client/profile" class="<?= isset($_GET['v']) && $_GET['v'] == "client/profile" ? "active" : "" ?>">Profile</a>
                             <a href="/PaintBall/index.php?v=main/tasks" class="<?= isset($_GET['v']) && $_GET['v'] == "main/tasks" ? "active" : "" ?>">Tasks</a>
                             <a href="/PaintBall/index.php?v=main/reservation" class="<?= isset($_GET['v']) && $_GET['v'] == "main/reservation" ? "active" : "" ?>">Battle with Us</a>
-                            <a href="/PaintBall/backend/actions/logout.php">Logout</a>
+                            <button onclick="openLogoutModal()" class="logout-btn">Logout</button>
                         </div>
                     <?php
                         break;
@@ -89,7 +89,7 @@ if (isset($_SESSION["user"])) {
                         <div class="link-container  nav-link">
                             <a href="/PaintBall/index.php?v=main/reservation" class="<?= isset($_GET['v']) && $_GET['v'] == "main/reservation" ? "active" : "" ?>">Battle with Us</a>
                             <a href="/PaintBall/index.php?v=client/profile" class="<?= isset($_GET['v']) && $_GET['v'] == "client/profile" ? "active" : "" ?>">Profile</a>
-                            <a href="/PaintBall/backend/actions/logout.php">Logout</a>
+                            <button onclick="openLogoutModal()" class="logout-btn">Logout</button>
                         </div>
                 <?php } ?>
             <?php endif; ?>
@@ -101,4 +101,31 @@ if (isset($_SESSION["user"])) {
 
 
         </header>
+
+        <!-- Logout Modal -->
+        <div id="logoutModal" class="logout-modal-overlay">
+            <div class="logout-modal">
+                <h2>Logout</h2>
+                <p>Are you sure you want to logout?</p>
+                <div class="logout-modal-actions">
+                    <button onclick="closeLogoutModal()" class="cancel-btn">Cancel</button>
+                    <a href="/PaintBall/backend/actions/logout.php" class="confirm-logout-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openLogoutModal() {
+                document.getElementById('logoutModal').classList.add('show');
+            }
+            function closeLogoutModal() {
+                document.getElementById('logoutModal').classList.remove('show');
+            }
+            // Close when clicking outside the modal
+            document.getElementById('logoutModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeLogoutModal();
+                }
+            });
+        </script>
     <?php endif; ?>
