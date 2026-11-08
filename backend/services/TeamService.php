@@ -38,4 +38,62 @@ class TeamService
         $members = DB::run($query);
         return $members;
     }
+
+    public static function createTeam($name, $maxPlayers, $photoPath = null)
+    {
+        $teamData = [
+            'name' => $name,
+            'max_number' => $maxPlayers,
+            'points' => 0 // Initialize points
+        ];
+
+        if ($photoPath !== null) {
+            $teamData['photo'] = $photoPath;
+        }
+
+        return DB::table('teams')->insert($teamData);
+    }
+
+    public static function joinTeam($userId, $teamId)
+    {
+        return DB::table('user_team')->insert([
+            'user_id' => $userId,
+            'team_id' => $teamId
+        ]);
+    }
+
+    public static function searchTeams($query = null, $limit = 10)
+    {
+        $db = DB::select("teams");
+        if (!empty($query)) {
+            $db->where("name", "LIKE", "%" . $query . "%");
+        } else {
+            $db->orderBy("RAND()");
+        }
+        $teams = $db->limit($limit)->get();
+        
+        // Count members for each team to display availability
+        foreach ($teams as &$team) {
+            $members = self::getTeamMembers($team['id']);
+            $team['current_members'] = count($members);
+        }
+        return $teams;
+    }
+
+    public static function isUserInTeam($userId, $teamId)
+    {
+        $res = DB::select("user_team")
+            ->where("user_id", $userId)
+            ->where("team_id", $teamId)
+            ->first();
+        return !empty($res);
+    }
+
+    public static function hasAnyTeam($userId)
+    {
+        $res = DB::select("user_team")
+            ->where("user_id", $userId)
+            ->first();
+        return !empty($res);
+    }
 }
